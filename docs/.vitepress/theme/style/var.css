@@ -1,0 +1,12 @@
+/* var.css */
+:root {
+    /* 标题 */
+    --vp-home-hero-name-color: transparent;
+    --vp-home-hero-name-background: linear-gradient( 135deg, #206ec7 10%, #0004fa 100%);
+    
+    /* 图标背景 */
+    --vp-home-hero-image-background-image: linear-gradient( 135deg, #98c76d 10%, #45b6ad 100%);
+    --vp-home-hero-image-filter: blur(150px);
+    --vp-font-family-base: "HYWenHei-55S"
+    --vp-font-family-mono: "HYWenHei-55S"
+  }

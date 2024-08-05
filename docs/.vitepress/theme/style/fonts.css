@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'HYWenHei-55S';
+    src: url('../fonts/HYWenHei-55S.woff2') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+:root {
+    --vp-font-family-base: 'HYWenHei-55S', -apple-system, Roboto, Oxygen, Ubuntu, Helvetica, Arial, sans-serif;
+    --vp-font-family-mono: 'HYWenHei-55S', monospace;
+}
+body {
+    font-family: HYWenHei-45W,sans-serif;
+  }
