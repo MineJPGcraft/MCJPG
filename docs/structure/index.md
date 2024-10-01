@@ -71,6 +71,12 @@ const publicise = [
     name: 'WERTYUS11',
     title: '审核兼宣传',
     desc: 'HappyDog服务器腐竹，啥都会但啥都不精通（）（）会Replay和Bcut',
+  },
+  {
+    avatar: '/teammate/Redapple_one.png',
+    name: 'Redapple_one',
+    title: '封面设计兼剪辑',
+    desc: 'TAC-Server服务器腐竹, 会那么一点的剪辑手法, 会用达芬奇,PR,ReplayMod,FlashBack.',
   }
 ]
 </script>
