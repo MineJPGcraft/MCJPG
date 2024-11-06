@@ -300,6 +300,13 @@ features:
     details: 版本:理论1.12.2-1.19.2（核心版本：1.19.2）<br>服务器基本玩法：四季生存，载具，家具，自然灾难，（小游戏），抽奖，宠物，精灵球，星露谷物语，更多玩法将会持续更新！（由于学业和人数问题，小游戏暂不开放）<br>特色：自定义内容丰富，玩家可完全自定义图片内容，生存不再枯燥。<br>目前服务器开放：生存世界，资源世界
     link: https://qm.qq.com/q/q90fy2E39C
     linkText: 欢迎新老玩家进服体验！
+
+  - icon:
+      src: /server_icons/toiletmc.png
+    title: 厕所总部
+    details: 版本：1.21.1<br/>Java版地址：play.toiletmc.net<br/>基岩版地址：be.toiletmc.net<br/>基岩版端口：37919<br/>QQ群：720737548<br/>✨一个坚持存档保留、玩法稳定、社区友好的 Minecraft 服务器，让你安心享受从 2019 年起持续优化的游戏体验！
+    link: https://qm.qq.com/cgi-bin/qm/qr?k=tEmlRdjAcNJcCbPXCHwtzXJo6TFnnvNN&authKey=2v%2BpcqTvZ6h1xFKED7WhhCMdigwKfnN8XhcFsHjT6OQI81pdne9jbKiOYpztmWy3&noverify=0&group_code=720737548
+    linkText: 加入QQ群聊
 ---
 
 <style>
