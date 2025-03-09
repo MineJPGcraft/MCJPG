@@ -341,4 +341,13 @@ export interface MinecraftServer {
       description: '版本:1.20.X~1.21.X |离线|白名单|公益|生存|生电 一个玩家和谐，玩法自由，游戏完善的高版本Fabric端生存生电服务器，详见宣传片',
       link: 'https://www.bilibili.com/video/BV1tRkiYcEXG/?share_source=copy_web&vd_source=5efb7eb559fb6731efdf1dd87ab54abc'
     },
+{
+      id: '37',
+      name: '公益Java基岩互通服',
+      type: '生存',
+      version: '互通1.20.4',
+      icon: '',
+      description: '兼容JE1.9~最新和最新BE 一个MC公益互通生存服务器 无需正版 可自由探索 主城有官方商店 可圈地',
+      link: 'https://mc.131.996h.cn'
+    },
   ]
