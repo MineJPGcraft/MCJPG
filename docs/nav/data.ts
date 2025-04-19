@@ -206,13 +206,6 @@ export const NAV_DATA: NavData[] = [
         link: 'https://www.mcappx.com/',
       },
       {
-        //icon: 'https://www.fastmirror.net/favicon.ico',
-        icon: '/icons/nav/资源站/无极镜像.ico',
-        title: 'FastMirror 无极镜像',
-        desc: '快速下载多种MC服务端核心',
-        link: 'https://www.fastmirror.net/#/home',
-      },
-      {
         //icon: 'https://www.curseforge.com/favicon.ico',
         icon: '/icons/nav/资源站/CurseForge.ico',
         title: 'CurseForge',
