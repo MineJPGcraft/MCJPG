@@ -375,4 +375,13 @@ export interface MinecraftServer {
       description: '支持JE 1.21～1.21.1版本，进服需要正版账号和定制整合包（参见群文件）。服务器内生电机器较完备，支持生存、生电、建筑、冒险等玩法，加入了No Chat Reports模组保证聊天安全，管理员能够保持活跃，服务器能够定期备份，欢迎加入到我们的旅途中！',
       link: 'https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=IiJFvtzm_ypIaPTUOsN2fOX7YOfLnMnu&authKey=jm4pCfb0fcGrp%2F4K0e3s9pXbnID9Sp7gAco2bOq0upxlFnWtNhbfCgPj9gHnkhZ5&noverify=0&group_code=921363139'
     },
+    {
+      id: '40',
+      name: '2B2T.BEST无规则服务器',
+      type: '无政府',
+      version: '1.21.4',
+      icon: '/server_icons/2B2T.BEST无规则服务器.png',
+      description: '🔥「2B2T.BEST」🎮 经典漏洞复刻 × 真正无规则 × 强力优化！无规则MC的终极答案，性能与混沌的完美平衡！这里只有最硬核的自由，最经典的混沌，以及永不妥协的优化体验！',
+      link: 'https://qm.qq.com/q/MJtHBEM4cC'
+    },
   ]
