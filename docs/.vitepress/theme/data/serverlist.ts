@@ -382,6 +382,7 @@ export interface MinecraftServer {
       version: '1.21.4',
       icon: '/server_icons/2B2T.BEST无规则服务器.png',
       description: '🔥「2B2T.BEST」🎮 经典漏洞复刻 × 真正无规则 × 强力优化！无规则MC的终极答案，性能与混沌的完美平衡！这里只有最硬核的自由，最经典的混沌，以及永不妥协的优化体验！',
-      link: 'https://qm.qq.com/q/MJtHBEM4cC'
+      link: 'https://qm.qq.com/q/MJtHBEM4cC',
+      ip: '2b2t.best'
     },
   ]
