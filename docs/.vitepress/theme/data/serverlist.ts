@@ -94,12 +94,12 @@ export interface MinecraftServer {
     },
     {
       id: '9',
-      name: '曙光生存',
+      name: 'Better on Bedrock',
       type: '生存',
-      version: '互通',
-      icon: '/server_icons/曙光生电.png',
-      description: '兼容BE和JE低版本 新生存服开荒中',
-      link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=PQjqlHR75lBj-Ege3LpSy7rB_GyZS7TB&authKey=CTQAjo1DEExUVFdxeIQwVupwXoA8Mg27%2FBJiu2eu8WyjnSTNSI8XfsjwM9q88zTj&noverify=0&group_code=1006061457'
+      version: '基岩',
+      icon: '/server_icons/BetteronBedrock.png',
+      description: '兼容BE高版本 新生存服开荒中',
+      link: 'https://qun.qq.com/universal-share/share?ac=1&authKey=TgLN3upBU0%2FnB6DP%2FQ25hzA%2BlpqB4tRGYjboc1Klnr18ZfVpPGvpkUJrEdDuhj8B&busi_data=eyJncm91cENvZGUiOiIxMDQxNzg3Njc5IiwidG9rZW4iOiJwbUp5eFY2dkhaYm9SSThQdThpN0tJQUh1bU54cVVhaEFMSHQrYmxjdnhSYmJaQlNIbGFiS0FHMkhTclZselJDIiwidWluIjoiMTY1MTE1NTMyOCJ9&data=4SbAn3ttzBBHunIG2YM4H249kTS3ZP0sZ_pqAhrH_6GV5GKTqNieeh_gtNGY4HqeUwnpX8OkKrA7SZuBtQmfCA&svctype=4&tempid=h5_group_info'
     },
     {
       id: '10',
@@ -284,15 +284,6 @@ export interface MinecraftServer {
       description: '版本：JE1.8x-1.21.x | BE:最新 这是一个长期开放的原版纯净高版本生存服务器 保留了原汁原味的体验,仅有基础玩法经济等插件 我们保证不做影响平衡、破坏公平或偏袒其他玩家 无需担心服内出现OP滥用权限恶意破坏等恶劣行为',
       link: 'https://oceannetwork.top',
       ip: 'mc.oceannetwork.top'
-    },
-    {
-      id: '30',
-      name: '望海公社',
-      type: '生电',
-      version: '1.20.4',
-      icon: '/server_icons/望海公社.png',
-      description: '一个普通的生电服，有白名单和语音通话',
-      link: 'https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=e-ZW5B7qKoAzPlVHHOWUSlayWuwjkMe4&authKey=sXEs4UUkSnc39sresb2zDDVIbV89SIadGDnn85QBW41TDOsbl7hZXpdPXf1qyvBs&noverify=0&group_code=939672717'
     },
     {
       id: '31',
