@@ -126,7 +126,7 @@ export interface MinecraftServer {
       version: '1.20.4',
       icon: '/server_icons/EternalStar.png',
       description: '群组服（纯净生存 + 小游戏 + 容易爆炸的RPG） EternalStar旨在给玩家更好的游戏体验，即使我们曾经遇到过无数困难，但我们没有就此离去 EternalStar欢迎您！',
-      link: 'https://eternalstarmc.com/'
+      link: 'https://official.eternalstarmc.com/'
     },
     {
       id: '13',
