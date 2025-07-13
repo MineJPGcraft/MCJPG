@@ -368,4 +368,14 @@ export interface MinecraftServer {
       description: '支持Java1.21.4及以上版本及基岩版最新。这是一个自由的互通原版服务器，支持生存/创造模式自由切换，我们珍视玩家的劳动成果，承诺长期运营。官方网站：lb.jscity.top QQ群：1027961947',
       link: 'https://lb.jscity.top',
     },
+    {
+      id: '42',
+      name: '梦陵大陆',
+      type: '模组',
+      version: '1.21.1',
+      icon: '/server_icons/服务器图标文件',
+      description: '服务器描述',
+      link: '链接',
+      ip: '服务器IP（可选），用于显示服务器状态信息'
+    },
    ]
