@@ -373,9 +373,9 @@ export interface MinecraftServer {
       name: '梦陵大陆',
       type: '模组',
       version: '1.21.1',
-      icon: '/server_icons/服务器图标文件',
-      description: '服务器描述',
-      link: '链接',
-      ip: '服务器IP（可选），用于显示服务器状态信息'
+      icon: '/server_icons/梦陵大陆服务器.png',
+      description: '这是基于Fabric的小型Mod生电服，服务器于2025年2月12日开放，已经快一周年了！在这里，你可以与其他玩家一起探索、建造和创造。我们的服务器是由一群热爱MC的玩家共同创建的，他们希望为玩家提供一个公平、包容的游戏环境。服务器不启用白名单，欢迎玩家提出开放、意见或者举报违规行为，请大家自觉遵守游戏规则。',
+      link: 'https://www.mcdlc.top/',
+      ip: 'mcdlc.top'
     },
    ]
