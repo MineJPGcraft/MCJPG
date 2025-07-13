@@ -305,15 +305,6 @@ export interface MinecraftServer {
       link: 'https://www.fizmc.icu/'
     },
     {
-      id: '34',
-      name: '怡梦云',
-      type: '生电',
-      version: '1.20.4',
-      icon: '/server_icons/怡梦云.png',
-      description: '集生电、建筑、冒险于一体的混乱的服务器，不定时会展开活动（死亡不掉落）',
-      link: 'https://qm.qq.com/q/gDTuqu8nIY'
-    },
-    {
       id: '35',
       name: '星光StarShine',
       type: '生存',
