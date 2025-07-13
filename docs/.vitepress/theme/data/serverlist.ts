@@ -80,8 +80,8 @@ export interface MinecraftServer {
       version: '1.21',
       icon: '/server_icons/HorizonNexus.jpg',
       description: '版本：JE 1.16.x-1.20.2 *Unknown**无线电静默*成分复杂的服务器',
-      link: 'https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=-IlME68JyiIobA7kc0K1ZtYq4bYuyrUj&authKey=AfOWKLmhMS666hgDeOW0Su3Oecq7WAfzOgDHhH8Zkpi5Anq9qWiQm6Vq7C9mcCcY&noverify=0&group_code=821501867',
-      ip: '9666.fun:10482'
+      link: 'https://qun.qq.com/universal-share/share?ac=1&authKey=MGx8jGa77Qq55S67iDcptb16UC02u02QxZMrT%2FEJASMUUVsXMGcOl2glRXv6Fyjk&busi_data=eyJncm91cENvZGUiOiI2OTU3NzkxODgiLCJ0b2tlbiI6ImZlZElHVGtRZVBYd1RQVFk3b29naDBEWXVVVUZyTlBVa1B5VzA2alhPaFRVdzd2YWY4YS9RZStzc0ZFYU00RmwiLCJ1aW4iOiIxNjY5NzA1MDMyIn0%3D&data=v-PrAfTTCAmtmZvQLvBcxZ7nqGJBF7uXfcKcMpFHZVLEkm-djbhOaZOWaaemIQymmXTaHIKJWm03tomJUkqDaQ&svctype=4&tempid=h5_group_info',
+      ip: 'mc.262282.xyz'
     },
     {
       id: '9',
