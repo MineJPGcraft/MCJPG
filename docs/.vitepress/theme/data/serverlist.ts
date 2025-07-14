@@ -378,4 +378,14 @@ export interface MinecraftServer {
       link: 'https://www.mcdlc.top/',
       ip: 'mcdlc.top'
     },
+      {
+      id: '43',
+      name: 'MCUF',
+      type: '互通',
+      version: '1.21.4',
+      icon: '/server_icons/MCUF.jpg',
+      description: 'MCUF纯净生存互通服务器 二周年特别版',
+      link: 'https://qun.qq.com/universal-share/share?ac=1&authKey=fnJUATrQjoFVUgVpAGJZJM6Pr9OgtFb6GyNXAEzU4piXszetjiwigZSLpn%2FKiT3X&busi_data=eyJncm91cENvZGUiOiIxMDA3MDE3NjQyIiwidG9rZW4iOiJybzlNclVhM2dBdlY5cnBzZXJMbVlIU1AzSnJqRGZuSGdTeEJzZElZM1Z2aW9tdG1KRVU1ZmF5TGlQbnArSmZqIiwidWluIjoiMjc1Mzg2NjcyOCJ9&data=ZKDrStOL5I844uqhT0xq4AuLOk0bbKZKCFwW7GXqkiIm3XMeFeDl_-A4J2K0UMnBneYxyj5oA8eZQEpT4RXKZg&svctype=4&tempid=h5_group_info',
+      ip: '43.248.77.159'
+    },
    ]
