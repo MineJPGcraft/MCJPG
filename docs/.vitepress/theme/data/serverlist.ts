@@ -368,4 +368,14 @@ export interface MinecraftServer {
       description: '支持Java1.21.4及以上版本及基岩版最新。这是一个自由的互通原版服务器，支持生存/创造模式自由切换，我们珍视玩家的劳动成果，承诺长期运营。官方网站：lb.jscity.top QQ群：1027961947',
       link: 'https://lb.jscity.top',
     },
+    {
+      id: '42',
+      name: '梦陵大陆',
+      type: '模组',
+      version: '1.21.1',
+      icon: '/server_icons/梦陵大陆服务器.png',
+      description: '这是基于Fabric的小型Mod生电服，服务器于2025年2月12日开放，已经快一周年了！在这里，你可以与其他玩家一起探索、建造和创造。我们的服务器是由一群热爱MC的玩家共同创建的，他们希望为玩家提供一个公平、包容的游戏环境。服务器不启用白名单，欢迎玩家提出开放、意见或者举报违规行为，请大家自觉遵守游戏规则。',
+      link: 'https://www.mcdlc.top/',
+      ip: 'mcdlc.top'
+    },
    ]
