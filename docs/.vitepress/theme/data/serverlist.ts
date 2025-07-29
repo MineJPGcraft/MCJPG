@@ -408,4 +408,13 @@ export interface MinecraftServer {
       link: 'https://qun.qq.com/universal-share/share?ac=1&authKey=KzS3LqLEmiPgOLTjSmiRaMru3stjKjSf3JGvS67jMT2fr4p9ZSrZBYwJwhgcav%2BO&busi_data=eyJncm91cENvZGUiOiI1MzI1MDczOTQiLCJ0b2tlbiI6IndzZlNMWnE1VWg3cXVHWmtBZzVMSlNrOGZDbkpwM2l6NUt0QzRpQlhBZElaQU4rdDR3ZjVpU01GRVk2OU1nS3IiLCJ1aW4iOiIzNTI4MzUyMTQ0In0%3D&data=W48oZy3IP6NKUAV6u2tF4trnDxGcIbUCiKokjx0i6Ig7X_9_yKmRnNg5yAClxHuzPcbizL4HYL61Pi6Dzc1kzQ&svctype=4&tempid=h5_group_info',
       ip: ''
     },
+    {
+      id: '45',
+      name: 'MCLUME',
+      type: '生存',
+      version: '1.21.4',
+      icon: '/server_icons/mclume.png',
+      description: '纯公益服务器',
+      link: 'www.unimc.homes'
+    },
    ]
