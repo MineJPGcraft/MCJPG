@@ -418,4 +418,14 @@ export interface MinecraftServer {
       link: 'https://www.unimc.homes',
       ip: 'mclume.unimc.homes'
     },
+    {
+      id: '47',
+      name: 'ATCraftMC',
+      type: '生存',
+      version: '互通',
+      icon: '/server_icons/AT.png',
+      description: 'ATCraftMC 由一群志同道合的腐竹和玩家联合组成。 秉持着开放、包容、共享的理念，我们持续添加新的游戏玩法， 以及激动人心的活动，为玩家提供新鲜刺激的游戏体验。',
+      link: 'https://atcraftmc.cn/'
+    },
    ]
+
