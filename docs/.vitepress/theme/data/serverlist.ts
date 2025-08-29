@@ -427,6 +427,17 @@ export interface MinecraftServer {
       description: 'ATCraftMC 由一群志同道合的腐竹和玩家联合组成。 秉持着开放、包容、共享的理念，我们持续添加新的游戏玩法， 以及激动人心的活动，为玩家提供新鲜刺激的游戏体验。',
       link: 'https://atcraftmc.cn/'
     },
+    {
+      id: '48',
+      name: '2B2T.BEST无规则服务器',
+      type: '无政府',
+      version: '1.21.7',
+      icon: '/server_icons/2B2T.BEST.png',
+      description: '🔥「2B2T.BEST」🎮 经典漏洞复刻 × 水晶PVP × 极致优化！致力于打造最好的无规则服务器！这里只有最硬核的自由，最经典的混沌，以及永不妥协的优化体验！',
+      link: 'https://qm.qq.com/q/MJtHBEM4cC',
+      ip: '2b2t.best'
+    }
    ]
+
 
 
