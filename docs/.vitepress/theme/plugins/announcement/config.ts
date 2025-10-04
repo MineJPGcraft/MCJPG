@@ -24,21 +24,21 @@ export interface AnnouncementConfig {
  */
 export const announcements: AnnouncementConfig[] = [
   {
-    id: 'welcome-2024',
-    title: '欢迎来到 MCLUME',
-    content: '🎉 欢迎来到 MCLUME 服务器！请仔细阅读游玩守则，享受愉快的游戏体验！',
+    id: 'welcome',
+    title: '欢迎来到 MCJPG',
+    content: '🎉 欢迎来到 MCJPG 官网！',
     type: 'info',
     priority: 100,
     showIcon: true,
     closable: true,
     duration: 8000,
     position: 'top',
-    target: ['/'] // 仅在首页显示
+    target: [] // 全局显示
   },
   {
     id: 'new-feature',
-    title: '新功能上线',
-    content: '✨ 新增了日志|公告功能，现在你可以及时跟进服务器更改！',
+    title: 'MCFLARE上线',
+    content: '✨ 一个新兴的MC社区！',
     type: 'success',
     priority: 80,
     startTime: '2025-10-01',
@@ -47,24 +47,9 @@ export const announcements: AnnouncementConfig[] = [
     closable: true,
     duration: 6000,
     position: 'top',
-    target: ['/', '/docs/logs.html']
-  },
+    target: ['/'] // 仅首页显示
+    }
 
-  // 节日活动公告
-  {
-    id: 'NationalDay',
-    title: '国庆节快乐!',
-    content: '国庆节特别活动即将开启！完成任务获得限定奖励！',
-    type: 'success',
-    priority: 85,
-    startTime: '2025-10-01',
-    endTime: '2025-10-10',
-    showIcon: true,
-    closable: true,
-    duration: 10000,
-    position: 'top',
-    target: []
-  }
 ]
 /**
  * 全局配置
@@ -76,9 +61,9 @@ export const globalConfig = {
   spacing: 12,
   // 动画持续时间（毫秒）
   animationDuration: 400,
-  // 是否启用声音提示
+  // 是否启用声音提示（无用）
   enableSound: true,
-  // 是否启用震动反馈（移动端）
+  // 是否启用震动反馈（移动端，无用）
   enableVibration: true,
   // 公告容器的 z-index
   zIndex: 99999,
