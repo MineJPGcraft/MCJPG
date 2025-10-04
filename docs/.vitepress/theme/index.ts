@@ -13,6 +13,7 @@ import giscusTalk from 'vitepress-plugin-comment-with-giscus'
 import ServerList from './components/ServerList.vue'
 import { NProgress } from 'nprogress-v2/dist/index.js'
 import 'nprogress-v2/dist/index.css'
+import { install as installAnnouncementPlugin } from './plugins/announcement'
 
 let homePageStyle: HTMLStyleElement | undefined
 
@@ -69,6 +70,8 @@ export default {
     app.component('MNavLinks', MNavLinks)
     app.component('ArticleMetadata' , ArticleMetadata)
     app.component('ServerList' , ServerList)
+    // 安装公告插件
+    installAnnouncementPlugin(app)
 
     if (typeof window !== 'undefined') {
       watch(
