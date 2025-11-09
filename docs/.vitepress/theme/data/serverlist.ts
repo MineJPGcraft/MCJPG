@@ -446,7 +446,16 @@ export interface MinecraftServer {
       description: '1.21.8互通服 离线可进 粘液科技 语音聊天 公会 领地 欢迎新玩家加入',
       link: 'https://qm.qq.com/q/YcVqH0waMk',
       ip: 'shamizo.top'
-    }
+    },
+    {
+      id: '50',
+      name: 'Octave中文网Minecraft讨论区',
+      type: '讨论区',
+      version: '互通',
+      icon: 'https://avatars.githubusercontent.com/u/184102101?v=4',
+      description: '于红博 八度信商公司总经理 Octave中文网总工程师',
+      link: 'http://forum.cnoctave.top/forum.php?mod=forumdisplay&fid=70'
+    },
    ]
 
 
