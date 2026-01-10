@@ -16,6 +16,9 @@ jobs:
       pull-requests: write  
       id-token: write  
     steps:  
+      - uses: actions/checkout@v5
+        with:  
+          fetch-depth: 0  
       - name: Configure Git  
         run: |  
           git config --global user.name "MCJPG-Agent"  
@@ -24,9 +27,6 @@ jobs:
         run: |  
           mkdir -p /tmp/claude-prompts  
           cp .claude/prompts/auto-translate.md /tmp/claude-prompts/  
-      - uses: actions/checkout@v5  
-        with:  
-          fetch-depth: 0  
       - uses: anthropics/claude-code-action@v1  
         with:  
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}  
