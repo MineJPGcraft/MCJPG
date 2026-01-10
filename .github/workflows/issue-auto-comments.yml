@@ -49,8 +49,8 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           pullRequestOpened: |
-            🎉 感谢 @{{ author }} 提交 Pull Request!
-            🎉 Thanks @{{ author }} for submitting the Pull Request!
+            🎉 感谢 {{ author }} 提交 Pull Request!
+            🎉 Thanks {{ author }} for submitting the Pull Request!
             
             我们会尽快审查您的代码。在此期间,请确保:
             We will review your code as soon as possible. In the meantime, please ensure:
@@ -58,15 +58,15 @@ jobs:
             - ✅ 代码符合项目规范 / Code follows project conventions
             - ✅ 已添加必要的文档 / Necessary documentation is added
 
-            接下来应该会有我们的 **MCJPG Agent** 对您的代码进行初步审查
-            Next, our **MCJPG Agent** will conduct an initial review of your code.
+            接下来应该会有我们的 **MCJPG Agent** 对您的代码进行初步审查。如有代码辅助需求，请在评论区 `@claude` 进行请求。
+            Next, our **MCJPG Agent** will conduct an initial review of your code. If you need code assistance, please `@claude` in the comments.
 
       # 原有:PR 合并时的自动回复
       - name: Auto Comment on Pull Request Merged
         uses: actions-cool/pr-welcome@main
         if: github.event_name == 'pull_request_target' && github.event.pull_request.merged == true
         with:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           comment: |
             ❤️ 感谢来自 ${{ github.event.pull_request.user.login }} 的 PR❤️
             ❤️ Great PR ${{ github.event.pull_request.user.login }} ❤️
