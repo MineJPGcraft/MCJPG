@@ -16,13 +16,16 @@ jobs:
       pull-requests: write  
       id-token: write  
     steps:  
-      - uses: actions/checkout@v5
-        with:  
-          fetch-depth: 0  
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+  
       - name: Configure Git  
         run: |  
           git config --global user.name "MCJPG-Agent"  
           git config --global user.email "agent@mcjpg.org"  
+
       - name: Copy prompts  
         run: |  
           mkdir -p /tmp/claude-prompts  
