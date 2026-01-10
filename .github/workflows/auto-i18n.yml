@@ -20,6 +20,11 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 1
+
+      - name: Copy prompts
+        run: |
+          mkdir -p /tmp/claude-prompts
+          cp .claude/prompts/auto-translate.md /tmp/claude-prompts/
   
       - name: Configure Git  
         run: |  
@@ -35,7 +40,7 @@ jobs:
             请按照提示里`自动翻译工作流 任务指引`进行网站页面的翻译任务  
           claude_args: |  
             --model claude-sonnet-4-5-20250929  
-            --append-system-prompt "$(cat /.claude/prompts/auto-translate.md)"  
+            --append-system-prompt "$(cat /tmp/claude-prompts/auto-translate.md)"  
           settings: |  
              {  
                "env": {  
