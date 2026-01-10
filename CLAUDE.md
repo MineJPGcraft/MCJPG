@@ -13,3 +13,6 @@
 ## 调试
 
 在进行最后的**Commit**并提交PR前，务必先进行测试确保网站可以正确运行，详细命令参见`/package.json`，比如Dev命令为`npm run docs:dev`
+
+## 回应用户
+优先使用用户提起PR和Issue的语言回复用户
