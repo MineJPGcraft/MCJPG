@@ -25,8 +25,8 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           issuesOpened: |
-            👋 你好 @{{ author }}，感谢提交 Issue!
-            👋 Hello @{{ author }}, thanks for submitting the issue!
+            👋 你好 {{ author }}，感谢提交 Issue!
+            👋 Hello {{ author }}, thanks for submitting the issue!
             
             我们会尽快查看并回复。如果您的问题紧急,请在 Issue 中说明。
             We will review and respond as soon as possible. If your issue is urgent, please indicate it in the issue.
