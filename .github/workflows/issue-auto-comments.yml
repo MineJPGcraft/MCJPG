@@ -23,7 +23,7 @@ jobs:
         if: github.event_name == 'issues' && github.event.action == 'opened'
         uses: wow-actions/auto-comment@v1
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           issuesOpened: |
             👋 你好 @{{ author }}，感谢提交 Issue!
             👋 Hello @{{ author }}, thanks for submitting the issue!
@@ -36,7 +36,7 @@ jobs:
         if: github.event_name == 'issues' && github.event.action == 'closed'
         uses: wow-actions/auto-comment@v1
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           issuesClosed: |
             ✅ {{ author }}
             此 Issue 已被关闭,如果您有任何问题,可以继续回复。
@@ -47,7 +47,7 @@ jobs:
         if: github.event_name == 'pull_request_target' && github.event.action == 'opened'
         uses: wow-actions/auto-comment@v1
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           pullRequestOpened: |
             🎉 感谢 @{{ author }} 提交 Pull Request!
             🎉 Thanks @{{ author }} for submitting the Pull Request!
@@ -66,7 +66,7 @@ jobs:
         uses: actions-cool/pr-welcome@main
         if: github.event_name == 'pull_request_target' && github.event.pull_request.merged == true
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           comment: |
             ❤️ 感谢来自 ${{ github.event.pull_request.user.login }} 的 PR❤️
             ❤️ Great PR ${{ github.event.pull_request.user.login }} ❤️
