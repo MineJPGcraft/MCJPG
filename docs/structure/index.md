@@ -15,7 +15,7 @@ const code = [
     avatar: '/teammate/SuiFeng.jpg',
     name: '随风潜入夜',
     title: '网络开发',
-    desc: 'MCJPG 网络开发 | HuggingAI 创始人 | 组织赞助商',
+    desc: 'MCJPG 网络开发 | HuggingAI 创始人 | 赞助商',
     links: [
       { icon: 'github', link: 'https://github.com/ZhuYuxuan9302' },
       { icon: {
