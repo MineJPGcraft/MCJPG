@@ -2,7 +2,6 @@ name: Sync I18n Docs Updates
 on:
   push:
     branches:
-      - mainpaths:
       - "docs/nav/data.ts"
       - "docs/press/**/*.md"
       - "docs/project/data.ts"
