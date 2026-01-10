@@ -4,9 +4,11 @@ jobs:
   doc-sync:  
     runs-on: ubuntu-latest  
     permissions:  
-      contents: write  
-      pull-requests: write  
-      id-token: write  
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read # Required for Claude to read CI results on PRs  
     steps:  
       - name: Checkout repository
         uses: actions/checkout@v6
