@@ -395,7 +395,7 @@ export interface MinecraftServer {
       version: '1.21.X',
       icon: '/server_icons/StarryIsles.jpg',
       description: '这是一个开了一年的基岩版空岛服，拥有单方块空岛的玩法，玩家领取一个属于自己的空岛。使用方块刷新包，可以让空岛中心的方块刷出资源。服务器还有等级系统，玩家可以通过购买方块包获得经验，等级到达某些层次时，玩家的血量上限会得到提升。服务器还有技能系统与boss。本服务器将是您度过愉快游戏时光的绝佳选择。',
-      link: 'minecraft://?addExternalServer=starry-isles|starry-isles.play-mc.space:20670',
+      link: 'minecraft://?addExternalServer=starry-isles|starry-isles.play-mc.space:20069',
       ip: ''
     },
     {
@@ -458,6 +458,7 @@ export interface MinecraftServer {
     ip: 'coldmouse.cn'
     }
    ]
+
 
 
 
