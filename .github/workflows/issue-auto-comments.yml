@@ -1,0 +1,76 @@
+name: Issue Auto Comment
+on:
+  issues:
+    types:
+      - opened
+      - closed
+      - assigned
+  pull_request_target:
+    types:
+      - opened
+      - closed
+permissions:
+  contents: read
+jobs:
+  run:
+    permissions:
+      issues: write # for actions-cool/issues-helper to update issues
+      pull-requests: write # for actions-cool/issues-helper to update PRs
+    runs-on: ubuntu-latest
+    steps:
+      # 新增：Issue 开启时的自动回复
+      - name: Auto Comment on Issues Opened
+        if: github.event_name == 'issues' && github.event.action == 'opened'
+        uses: wow-actions/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          issuesOpened: |
+            👋 你好 @{{ author }}，感谢提交 Issue!
+            👋 Hello @{{ author }}, thanks for submitting the issue!
+            
+            我们会尽快查看并回复。如果您的问题紧急,请在 Issue 中说明。
+            We will review and respond as soon as possible. If your issue is urgent, please indicate it in the issue.
+
+      # 原有：Issue 关闭时的自动回复
+      - name: Auto Comment on Issues Closed
+        if: github.event_name == 'issues' && github.event.action == 'closed'
+        uses: wow-actions/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          issuesClosed: |
+            ✅ {{ author }}
+            此 Issue 已被关闭,如果您有任何问题,可以继续回复。
+            This issue is closed. If you have any questions, you can comment and reply.
+
+      # 新增:PR 开启时的自动回复
+      - name: Auto Comment on Pull Request Opened
+        if: github.event_name == 'pull_request_target' && github.event.action == 'opened'
+        uses: wow-actions/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          pullRequestOpened: |
+            🎉 感谢 @{{ author }} 提交 Pull Request!
+            🎉 Thanks @{{ author }} for submitting the Pull Request!
+            
+            我们会尽快审查您的代码。在此期间,请确保:
+            We will review your code as soon as possible. In the meantime, please ensure:
+            - ✅ 所有测试通过 / All tests pass
+            - ✅ 代码符合项目规范 / Code follows project conventions
+            - ✅ 已添加必要的文档 / Necessary documentation is added
+
+            接下来应该会有我们的 **MCJPG Agent** 对您的代码进行初步审查
+            Next, our **MCJPG Agent** will conduct an initial review of your code.
+
+      # 原有:PR 合并时的自动回复
+      - name: Auto Comment on Pull Request Merged
+        uses: actions-cool/pr-welcome@main
+        if: github.event_name == 'pull_request_target' && github.event.pull_request.merged == true
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          comment: |
+            ❤️ 感谢来自 ${{ github.event.pull_request.user.login }} 的 PR❤️
+            ❤️ Great PR ${{ github.event.pull_request.user.login }} ❤️
+            如果您也对 **MCJPG** 组织的开发工作感兴趣,欢迎联系并加入我们
+            If you're also interested in the development work of the **MCJPG** organization, feel free to reach out and join us.
+          emoji: 'hooray'
+          pr-emoji: '+1, heart'
