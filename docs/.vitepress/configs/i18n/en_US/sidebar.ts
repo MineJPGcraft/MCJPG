@@ -15,6 +15,7 @@ export const sidebar = {
                 {text: '2025 National Day Special', link: '2025国庆特辑/'},
                 {text: '2025 Gratitude Program', link: '2025年度感谢计划/'},
                 {text: 'Publicity Guidelines', link: '论坛合作/'},
+                {text: 'Launching the AI Intelligent Repository Era', link: '开启AI智能仓库时代/'},
             ]
           },
           {
