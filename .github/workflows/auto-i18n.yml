@@ -12,7 +12,8 @@ on:
       - "docs/rules/index.md"
 jobs:  
   doc-sync:  
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest 
+    timeout-minutes: 15 
     permissions:  
       contents: write
       pull-requests: write
@@ -47,6 +48,7 @@ jobs:
           claude_args: |  
             --model claude-sonnet-4-5-20250929  
             --allowedTools "Read,Write,Edit,Bash(git:*)"
+            #   --auto-approve
             --append-system-prompt "$(cat /tmp/claude-prompts/auto-translate.md)"  
           settings: |  
              {  
