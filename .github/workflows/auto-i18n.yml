@@ -42,6 +42,7 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}  
           prompt: |  
             REPO: ${{ github.repository }}  
+            PR NUMBER: ${{ github.event.pull_request.number }}  
             请按照提示里`自动翻译工作流 任务指引`进行网站页面的翻译任务 提示的路径为`.claude/prompts/auto-translate.md`
           claude_args: |  
             --model claude-sonnet-4-5-20250929  
