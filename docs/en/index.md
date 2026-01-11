@@ -5,7 +5,7 @@ layoutClass: 'm-home-layout'
 hero:
   name: MCJPG
   text: MC Server Exchange Organization
-  tagline: An organization dedicated to Minecraft technical communication and server promotion</br>Whether you're a player or a server owner, this is an excellent community for communication!
+  tagline: An organization dedicated to Minecraft technical communication and server promotion</br>Whether you're a player or a server owner, this is an excellent community for communication, this is a commit to test the automatic translation workflow
   image:
     src: /logo.png
     alt: MCJPG Organization

@@ -5,7 +5,7 @@ layoutClass: 'm-home-layout'
 hero:
   name: MCJPG
   text: 伺服器宣傳組織
-  tagline: 此乃礦藝技藝交流和伺服器宣傳组织</br>無論君乃戲者亦或伺服器之主，此處均為風水寶地
+  tagline: 此乃礦藝技藝交流和伺服器宣傳组织</br>無論君乃戲者亦或伺服器之主，此處均為風水寶地,此乃用以測試自動翻譯流程之提交
   image:
     src: /logo.png
     alt: MCJPG組織
