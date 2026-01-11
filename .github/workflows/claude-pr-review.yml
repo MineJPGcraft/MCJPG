@@ -8,7 +8,7 @@ jobs:
     # 当PR作者不是claude或MCJPG_Agent时才运行
     if: |
       github.event.pull_request.user.login != 'claude' && 
-      github.event.pull_request.user.login != 'MCJPG_Agent'
+      github.event.pull_request.user.login != 'MCJPG-Agent'
     permissions:
       contents: read
       pull-requests: write
