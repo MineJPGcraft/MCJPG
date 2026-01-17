@@ -443,7 +443,7 @@ export interface MinecraftServer {
       type: '生存',
       version: '1.21.8',
       icon: '/server_icons/PixelMine.jpg',
-      description: 'PixelMine服务器 欢迎体验！✔ 双商店系统 → 官方货源充足 + 全球玩家自由交易 ✔ 领地+帮会 → 安心建造，集结战友共创最强联盟 ✔ 便捷机制 → 连锁采集 & 矿物透视，助你高效发育 🌟 轻松生存，深度社交，一切尽在',
+      description: 'PixelMine服务器 欢迎体验！✔ 双商店系统 → 官方货源充足 + 全球玩家自由交易 ✔ 领地+帮会 → 安心建造，集结战友共创最强联盟 ✔ 便捷机制 → 连锁采集 & 矿物透视，助你高效发育 🌟 轻松生存，深度社交，一切尽在 PixelMine！',
       link: 'https://qm.qq.com/q/FKRR1McKqW',
       ip: 'shamizo.top'
     },
