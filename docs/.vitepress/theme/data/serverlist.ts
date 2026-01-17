@@ -15,7 +15,7 @@ export interface MinecraftServer {
 }
   
   export const serverTypes = ['生存', '生电','创造', '模组', '小游戏','群组服','无政府']
-  export const serverVersions = ['中国版','互通','基岩版','1.21.X','1.21.7','1.21.4','1.21.3','1.21.1','1.21','1.20.4','1.20.1', '1.18.2', '1.16.5']
+  export const serverVersions = ['中国版','互通','基岩版','1.21.X','1.21.8','1.21.7','1.21.4','1.21.3','1.21.1','1.21','1.20.4','1.20.1', '1.18.2', '1.16.5']
 
   export const servers: MinecraftServer[] = [
     {
@@ -441,10 +441,10 @@ export interface MinecraftServer {
       id: '49',
       name: 'PixelMine',
       type: '生存',
-      version: '互通',
+      version: '1.21.8',
       icon: '/server_icons/PixelMine.jpg',
-      description: '1.21.8互通服 离线可进 粘液科技 语音聊天 公会 领地 欢迎新玩家加入',
-      link: 'https://qm.qq.com/q/YcVqH0waMk',
+      description: 'PixelMine服务器 欢迎体验！✔ 双商店系统 → 官方货源充足 + 全球玩家自由交易 ✔ 领地+帮会 → 安心建造，集结战友共创最强联盟 ✔ 便捷机制 → 连锁采集 & 矿物透视，助你高效发育 🌟 轻松生存，深度社交，一切尽在',
+      link: 'https://qm.qq.com/q/FKRR1McKqW',
       ip: 'shamizo.top'
     },
     {
@@ -458,6 +458,7 @@ export interface MinecraftServer {
     ip: 'coldmouse.cn'
     }
    ]
+
 
 
 
