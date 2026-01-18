@@ -441,10 +441,10 @@ export interface MinecraftServer {
       id: '49',
       name: 'PixelMine',
       type: '生存',
-      version: '互通',
+      version: '1.21.8',
       icon: '/server_icons/PixelMine.jpg',
-      description: '1.21.8互通服 离线可进 粘液科技 语音聊天 公会 领地 欢迎新玩家加入',
-      link: 'https://qm.qq.com/q/YcVqH0waMk',
+      description: '一个基于1.21.8版本的多元化生存服务器，支持离线登录。服务器包含粘液科技、公会系统、领地保护、经济贸易等丰富玩法。无论你是生存玩家、粘液科技爱好者还是建筑爱好者，这里都能找到属于你的乐趣。服务器长期稳定运营，社区友好和谐，期待你的加入',
+      link: 'https://shamizo.top/',
       ip: 'shamizo.top'
     },
     {
@@ -458,7 +458,6 @@ export interface MinecraftServer {
     ip: 'coldmouse.cn'
     }
    ]
-
 
 
 
