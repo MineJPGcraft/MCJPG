@@ -68,8 +68,8 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
           comment: |
-            ❤️ 感谢来自 ${{ github.event.pull_request.user.login }} 的 PR❤️
-            ❤️ Great PR ${{ github.event.pull_request.user.login }} ❤️
+            ❤️ 感谢来自 ${{ github.event.pull_request.user.login }} 的 PR ❤️
+            ❤️ Great PR from ${{ github.event.pull_request.user.login }} ❤️
             如果您也对 **MCJPG** 组织的开发工作感兴趣,欢迎联系并加入我们
             If you're also interested in the development work of the **MCJPG** organization, feel free to reach out and join us.
           emoji: 'hooray'
