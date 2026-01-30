@@ -12,8 +12,8 @@ import {
 } from 'vitepress/theme'
 const code = [
     {
-    avatar: '/teammate/SuiFeng.jpg',
-    name: '随风潜入夜',
+    avatar: '/teammate/Lynlan.jpg',
+    name: 'Lynlan',
     title: '网络开发',
     desc: 'MCJPG 网络开发 | HuggingAI 创始人',
     links: [
