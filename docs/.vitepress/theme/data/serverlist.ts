@@ -457,7 +457,18 @@ export interface MinecraftServer {
     link: 'https://coldmouse.cn/',
     ip: 'coldmouse.cn'
     }
+    { 
+    id: '51', 
+    name: 'Just A Server', 
+    type: '生存', 
+    version: '1.20.4', 
+    icon: '/server_icons/justaserver.png', 
+    description: '一个由中学生创建的1.20.4SMP,支持离线登录，有死亡不掉落，为玩家带来原汁原味的生存体验', 
+    link: 'dqcy.ccwu.cc', 
+    ip: 'dqcy.de5.net' 
+  }
    ]
+
 
 
 
