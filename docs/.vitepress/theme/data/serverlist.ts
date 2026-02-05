@@ -456,8 +456,19 @@ export interface MinecraftServer {
     description: 'Cold Mouse 是一站式MC群组服，提供RPG生存、创造、空岛、小游戏以及PVP等多种玩法。本服自2022年起稳定运营，专注于高版本休闲体验与和谐社区建设。欢迎来到这个更快、更稳、更有氛围的方块世界。点击此卡片进入官网，查看文档或加群了解更多~',
     link: 'https://coldmouse.cn/',
     ip: 'coldmouse.cn'
+    },
+    { 
+    id: '51', 
+    name: 'WMSMC', 
+    type: '生存', 
+    version: '互通', 
+    icon: '/server_icons/wmsmc.png', 
+    description: 'WMSMC[1.8.x-最新版本]是一个RPG生存服务器,开服于2021年、离线登录、需要白名单,多种优质副本等你挑战!!!!', 
+    link: 'https://wanys.xyz/', 
+    ip: 'mc.wanys.xyz' 
     }
    ]
+
 
 
 
