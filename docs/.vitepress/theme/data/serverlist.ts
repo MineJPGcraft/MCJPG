@@ -462,12 +462,13 @@ export interface MinecraftServer {
     name: 'WMSMC', 
     type: '生存', 
     version: '互通', 
-    icon: '/server_icons/wmsmc.png', 
+    icon: '/server_icons/wmsmc.jpg', 
     description: 'WMSMC[1.8.x-最新版本]是一个RPG生存服务器,开服于2021年、离线登录、需要白名单,多种优质副本等你挑战!!!!', 
     link: 'https://wanys.xyz/', 
     ip: 'mc.wanys.xyz' 
     }
    ]
+
 
 
 
