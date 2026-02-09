@@ -466,4 +466,5 @@ export interface MinecraftServer {
     description: '允许生电，支持离线！公益开服，快乐至上！超高配置，不易卡顿！', 
     link: 'https://qm.qq.com/q/DwEQ5ehokg', 
     ip: 'bnkcat.cn' 
-    },
+    }
+  ]
