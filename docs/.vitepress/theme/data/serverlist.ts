@@ -456,16 +456,15 @@ export interface MinecraftServer {
     description: 'Cold Mouse 是一站式MC群组服，提供RPG生存、创造、空岛、小游戏以及PVP等多种玩法。本服自2022年起稳定运营，专注于高版本休闲体验与和谐社区建设。欢迎来到这个更快、更稳、更有氛围的方块世界。点击此卡片进入官网，查看文档或加群了解更多~',
     link: 'https://coldmouse.cn/',
     ip: 'coldmouse.cn'
+    },
+    { 
+    id: '51', 
+    name: '崩喵BNK', 
+    type: '群组服', 
+    version: '1.21.X', 
+    icon: '/server_icons/BNK.jpg', 
+    description: '允许生电，支持离线！公益开服，快乐至上！超高配置，不易卡顿！', 
+    link: 'https://qm.qq.com/q/DwEQ5ehokg', 
+    ip: 'bnkcat.cn' 
     }
-   ]
-
-
-
-
-
-
-
-
-
-
-
+  ]
