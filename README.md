@@ -2,7 +2,7 @@
 
 # MCJPG 服务器交流组织
 
-这里是Minecraft服务器服务器交流组织 (MCJPG)！ 
+这里是Minecraft服务器服务器交流组织 (MCJPG)！ test
 
 一个致力于我的世界服务器技术交流和宣传的组织。 
 
