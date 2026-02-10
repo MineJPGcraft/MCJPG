@@ -1,6 +1,6 @@
 **中文** | [English](./README_EN.md)
 
-# MCJPG 服务器交流组织
+# MCJPG 服务器交流组织 test
 
 这里是Minecraft服务器服务器交流组织 (MCJPG)！ 
 
