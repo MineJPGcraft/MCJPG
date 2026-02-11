@@ -42,6 +42,12 @@ const code = [
     title: 'CHRO',
     desc: 'Server owner of RedStarMC server | Does some miscellaneous work',
   },
+  {
+    avatar: '/teammate/wangyupu.png',
+    name: 'wangyupu',
+    title: 'Full-stack Developer',
+    desc: 'Can write some code',
+  },
 ]
 
 const community = [
