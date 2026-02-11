@@ -42,6 +42,12 @@ const code = [
     title: 'CHRO',
     desc: '朕清歌天譴了闡胭脂飲務器之患,幸飲務器之關｜及亂者遂至',
   },
+  {
+    avatar: '/teammate/wangyupu.png',
+    name: 'wangyupu',
+    title: '全棧營造',
+    desc: '略解程式碼',
+  },
 ]
 
 const community = [
