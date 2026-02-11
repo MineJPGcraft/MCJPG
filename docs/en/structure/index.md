@@ -14,7 +14,7 @@ const code = [
     {
     avatar: '/teammate/Lynlan.jpg',
     name: 'Lynlan',
-    title: 'Web Developer',
+    title: 'CEO & CIO',
     desc: 'MCJPG web developer | HuggingAI Founder',
     links: [
       { icon: 'github', link: 'https://github.com/ZhuYuxuan9302' },
@@ -27,7 +27,7 @@ const code = [
   {
     avatar: '/teammate/fireguo.png',
     name: 'FireGuo',
-    title: 'Technical Support',
+    title: 'CTO & CFO',
     desc: 'Solves basic technical issues (kinda), founder of the 风梨团队, and head of status monitoring and robotics.',
   },
   {
@@ -39,7 +39,7 @@ const code = [
   {
     avatar: '/teammate/pingguomc.png',
     name: 'pingguomc',
-    title: 'Backend and Plugin Technologist',
+    title: 'CHRO',
     desc: 'Server owner of RedStarMC server | Does some miscellaneous work',
   },
 ]
@@ -90,7 +90,7 @@ const community = [
   {
     avatar: '/teammate/明镜台.jpg',
     name: '明镜台',
-    title: 'Publicist',
+    title: 'COO',
     desc: 'Founder of 镜羽工作室',
   },
   {
