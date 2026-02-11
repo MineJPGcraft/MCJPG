@@ -464,7 +464,7 @@ export interface MinecraftServer {
     version: '1.21.X', 
     icon: '/server_icons/BNK.jpg', 
     description: '允许生电，支持离线！公益开服，快乐至上！超高配置，不易卡顿！', 
-    link: 'https://qm.qq.com/q/DwEQ5ehokg', 
+    link: 'https://www.bnkcat.cn/', 
     ip: 'bnkcat.cn' 
     }
   ]
