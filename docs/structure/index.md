@@ -42,6 +42,12 @@ const code = [
     title: 'CHRO',
     desc: '红星我的世界服务器现任腐竹 | 一些杂活',
   },
+  {
+    avatar: '/teammate/wangyupu.png',
+    name: 'wangyupu',
+    title: '全栈开发',
+    desc: '会写点代码',
+  },
 ]
 
 const community = [
