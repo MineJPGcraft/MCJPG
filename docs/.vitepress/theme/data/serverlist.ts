@@ -110,4 +110,15 @@ export const servers: MinecraftServer[] = [
     link: 'https://craft233.top',
     ip: 'mc.craft233.top',
   },
+  {
+    id: '8',
+    name: 'Play Chess Club(PCC)',
+    type: '生存',
+    version: '1.21.8',
+    icon: '/server_icons/pcc.webp',
+    description:
+      '版本：1.21.x  欢迎来到PlayChessClub，一个温馨和谐的公益服务器。无论您是寻找稳定流畅的游戏体验，还是希望在友好的社区中结交新朋友，PCC都能足您的需求。从一周目到三周目，PCC一直致力于提供优质的生存以及特色玩法。诚邀您的加入！ 点击后进入官网加入服务器！',
+    link: 'https://mcpcc.fun',
+    ip: 'chat.mcpcc.fun:13123',
+  },
 ]
