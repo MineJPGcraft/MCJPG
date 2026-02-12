@@ -109,7 +109,7 @@ const community = [
     avatar: '/teammate/Redapple_one.png',
     name: 'Redapple_one',
     title: '宣传',
-    desc: 'TAC-Server服务器腐竹, 会那么一点的剪辑手法, 会用达芬奇,PR,ReplayMod,FlashBack.',
+    desc: 'osu! player, 会那么一点点的剪辑手法, 会用达芬奇,PR,ReplayMod,FlashBack.',
   }
 ]
 
