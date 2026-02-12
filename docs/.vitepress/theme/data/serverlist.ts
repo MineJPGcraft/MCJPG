@@ -99,4 +99,15 @@ export const servers: MinecraftServer[] = [
     link: 'https://orwoe.cn',
     ip: 'orwoe.cn',
   },
+  {
+    id: '7',
+    name: 'Craft233',
+    type: '生存',
+    version: '1.21.10',
+    icon: '/server_icons/Craft233.png',
+    description:
+      '高版本生存服务器,不限制红石与机器,拥有原版粘液生存和单方块生存,支持正版/LittleSkin/基岩版登陆,不限制客户端原版可进。下一周目调试中，欢迎加入。',
+    link: 'https://craft233.top',
+    ip: 'mc.craft233.top',
+  },
 ]
