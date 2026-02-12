@@ -10,6 +10,7 @@ on:
       - "docs/index.md"
       - "docs/structure/index.md"
       - "docs/rules/index.md"
+      - "docs/.vitepress/configs/*.ts"
 jobs:  
   doc-sync:  
     runs-on: ubuntu-latest 
