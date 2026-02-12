@@ -48,6 +48,12 @@ const code = [
     title: '全栈开发',
     desc: '会写点代码',
   },
+  {
+    avatar: '/teammate/zzfx1166.jpeg',
+    name: 'zzfx1166',
+    title: '后端开发',
+    desc: 'js/ts后端开发',
+  }
 ]
 
 const community = [

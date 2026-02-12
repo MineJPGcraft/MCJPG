@@ -48,6 +48,12 @@ const code = [
     title: '全棧營造',
     desc: '略解程式碼',
   },
+  {
+    avatar: '/teammate/zzfx1166.jpeg',
+    name: 'zzfx1166',
+    title: '後端營造',
+    desc: 'js/ts後端營造',
+  }
 ]
 
 const community = [
