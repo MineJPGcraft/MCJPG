@@ -21,7 +21,7 @@ export const lch = defineConfig({
       
         footer: {
             message: 'MCJPG伺服器交流組織',
-            copyright: '版權所有 © 2025-至今 <a href="https://mcjpg.org/">MCJPG</a>— —<a href="https://github.com/MineJPGcraft/MCJPG">网站的仓库</a>'
+            copyright: '版權所有 © 2026-至今 <a href="https://mcjpg.org/">MCJPG</a>— —<a href="https://github.com/MineJPGcraft/MCJPG">網站代碼倉庫</a>'
           },
       
         lastUpdated: {
