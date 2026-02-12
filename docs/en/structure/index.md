@@ -48,6 +48,12 @@ const code = [
     title: 'Full-stack Developer',
     desc: 'Can write some code',
   },
+  {
+    avatar: '/teammate/zzfx1166.jpeg',
+    name: 'zzfx1166',
+    title: 'Backend Developer',
+    desc: 'js/ts backend development',
+  }
 ]
 
 const community = [
