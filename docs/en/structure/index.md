@@ -109,7 +109,7 @@ const community = [
     avatar: '/teammate/Redapple_one.png',
     name: 'Redapple_one',
     title: 'Publicist',
-    desc: 'Admin of TAC-Server, knows a thing or two about video editing, uses DaVinci Resolve, PR, ReplayMod, and FlashBack.',
+    desc: 'osu! player, knows a bit about video editing, uses DaVinci Resolve, PR, ReplayMod, and FlashBack.',
   }
 ]
 
