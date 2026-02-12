@@ -425,7 +425,7 @@ export interface MinecraftServer {
       version: '互通',
       icon: '/server_icons/AT.png',
       description: 'ATCraftMC 由一群志同道合的腐竹和玩家联合组成。 秉持着开放、包容、共享的理念，我们持续添加新的游戏玩法， 以及激动人心的活动，为玩家提供新鲜刺激的游戏体验。',
-      link: 'https://qm.qq.com/q/XV7O0gsM8M',
+      link: 'https://atcraftmc.cn',
       ip: 'game.atcraftmc.cn'
     },
     {
