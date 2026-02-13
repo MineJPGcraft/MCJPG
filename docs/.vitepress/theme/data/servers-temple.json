@@ -1,0 +1,17 @@
+{
+  "types": ["生存", "创造", "小游戏"],
+  "versions": ["1.20.1", "1.19.4", "1.18.2"],
+  "servers": [
+    {
+      "id": 1,
+      "name": "示例服务器",
+      "description": "这是一个示例服务器\n支持多行描述",
+      "type": "生存",
+      "version": "1.20.1",
+      "ip": "mc.example.com",
+      "link": "https://example.com",
+      "icon": "/images/server-icon.png"
+    }
+  ],
+  }
+}
