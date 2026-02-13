@@ -9,7 +9,7 @@ editLink: false
 
 ## 📋 組織簡介
 
-**MCJPG** 伺服器交流組織(以下簡稱「本組織」、「集宣組織」)，乃由**隨風潛入夜**、**FireGuo**、**二氧化鈦**、**Weasd-QAQ**等諸位伺服器服主之為共謀發展，而聯袂組建之有組織之整體也。
+**MCJPG** 伺服器交流組織(以下簡稱「本組織」)，乃由**隨風潛入夜**、**FireGuo**、**二氧化鈦**、**Weasd-QAQ**等諸位伺服器服主之為共謀發展，而聯袂組建之有組織之整體也。
 
 :::warning 重要提示
 凡入本組織者，即視為同意下列免責聲明及全部規章制度。
@@ -116,9 +116,9 @@ editLink: false
 審核通過後，君之伺服器將現於MCJPG官網之伺服器列表之中。
 
 :::tip 💡 高級選項
-若君有一GitHub賬戶，可直照網站倉庫之說明提交『Pull Request』，助吾輩更迅速地更新伺服器之列表！
+若君有一GitHub賬戶，可直照伺服器列表倉庫之說明提交『Pull Request』，助吾輩更迅速地更新伺服器之列表！
 
-🔗 吾輩之GitHub倉庫：[https://github.com/MineJPGcraft/MCJPG](https://github.com/MineJPGcraft/MCJPG)
+🔗 伺服器列表之GitHub倉庫：[https://github.com/MineJPGcraft/Serverlist](https://github.com/MineJPGcraft/Serverlist)
 :::
 
 ---
