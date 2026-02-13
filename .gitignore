@@ -1,4 +1,7 @@
 docs/.vitepress/cache/
 node_modules/
-package-lock.json
 dist/
+
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
