@@ -9,7 +9,7 @@ editLink: false
 
 ## 📋 Organization Introduction
 
-The **MCJPG** Server Exchange Organization (hereinafter referred to as "the Organization" or "MCJPG Organization") is a coordinated entity formed by server hosts such as **随风潜入夜**, **FireGuo**, **二氧化钛**, **Weasd-QAQ** among others, for mutual development.
+The **MCJPG** Server Exchange Organization (hereinafter referred to as "the Organization") is a coordinated entity formed by server hosts such as **随风潜入夜**, **FireGuo**, **二氧化钛**, **Weasd-QAQ** among others, for mutual development.
 
 :::warning Important Notice
 Joining the Organization is deemed as agreeing to the following disclaimer and all rules and regulations.
@@ -116,9 +116,9 @@ Promotion Link:
 After approval, your server will appear in the server list on the MCJPG website.
 
 :::tip 💡 Advanced Option
-If you have a GitHub account, you can directly submit a Pull Request according to the website repository guidelines to help us update the server list more quickly!
+If you have a GitHub account, you can directly submit a Pull Request according to the Server List repository guidelines to help us update the server list more quickly!
 
-🔗 Our GitHub repository: [https://github.com/MineJPGcraft/MCJPG](https://github.com/MineJPGcraft/MCJPG)
+🔗 Server List GitHub repository: [https://github.com/MineJPGcraft/Serverlist](https://github.com/MineJPGcraft/Serverlist)
 :::
 
 ---
