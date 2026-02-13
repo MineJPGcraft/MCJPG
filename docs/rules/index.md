@@ -9,7 +9,7 @@ editLink: false
 
 ## 📋 组织简介
 
-**MCJPG** 服务器交流组织（以下简称"本组织"、"集宣组织"）是由 **随风潜入夜**、**FireGuo**、**二氧化钛**、**Weasd-QAQ** 等服务器服主为了共同发展而联合起来的有组织的整体。
+**MCJPG** 服务器交流组织（以下简称"本组织"）是由 **随风潜入夜**、**FireGuo**、**二氧化钛**、**Weasd-QAQ** 等服务器服主为了共同发展而联合起来的有组织的整体。
 
 :::warning 重要提示
 加入组织，即视为同意以下免责声明及全部规章制度。
@@ -116,9 +116,9 @@ editLink: false
 审核通过后，您的服务器将出现在 MCJPG 官网的服务器列表中。
 
 :::tip 💡 高级选项
-如果您有 GitHub 账号，可以直接按照网站仓库的说明提交 Pull Request，帮助我们更快速地更新服务器列表！
+如果您有 GitHub 账号，可以直接按照服务器列表仓库的说明提交 Pull Request，帮助我们更快速地更新服务器列表！
 
-🔗 我们的 GitHub 仓库：[https://github.com/MineJPGcraft/MCJPG](https://github.com/MineJPGcraft/MCJPG)
+🔗 服务器列表的 GitHub 仓库：[https://github.com/MineJPGcraft/Serverlist](https://github.com/MineJPGcraft/Serverlist)
 :::
 
 ---
