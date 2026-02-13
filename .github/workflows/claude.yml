@@ -32,7 +32,7 @@ jobs:
           git config --global user.email "claude-bot[bot]@users.noreply.github.com"  
       
       - name: Checkout repository  
-        uses: actions/checkout@v5  
+        uses: actions/checkout@v6  
         with:  
           fetch-depth: 1  
   
@@ -51,7 +51,7 @@ jobs:
   
           # Optional: Configure Claude's behavior with CLI arguments  
           claude_args: |  
-            --model claude-sonnet-4-5-20250929  
+            --model claude-opus-4-6  
             #   --auto-approve  
             #   --max-turns 10  
             #   --allowedTools "Bash(npm install),Bash(npm run build),Bash(npm run test:*),Bash(npm run lint:*)"  
