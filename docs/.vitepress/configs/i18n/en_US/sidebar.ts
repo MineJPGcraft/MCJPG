@@ -16,6 +16,7 @@ export const sidebar = {
                 {text: '2025 Gratitude Program', link: '2025年度感谢计划/'},
                 {text: 'Publicity Guidelines', link: '论坛合作/'},
                 {text: 'Launching the AI Intelligent Repository Era', link: '开启AI智能仓库时代/'},
+                {text: '2026 Winter Vacation Personnel Changes', link: '2026寒假人事变动/'},
             ]
           },
           {
