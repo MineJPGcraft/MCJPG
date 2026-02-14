@@ -130,6 +130,11 @@ function updateHomePageStyle(value: boolean) {
 
 const playlist = [
   {
+    name: '天天天国地獄国',
+    author: 'ななひら & P丸様。',
+    file: '/music/天天天国地獄国.mp3',
+  },
+  {
     name: 'Otherside',
     author: 'Mojang',
     file: '/music/otherside.mp3',
