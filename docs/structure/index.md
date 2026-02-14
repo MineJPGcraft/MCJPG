@@ -10,8 +10,9 @@ import {
   VPTeamMembers,
   VPTeamPageSection
 } from 'vitepress/theme'
-const code = [
-    {
+
+const admin = [
+  {
     avatar: '/teammate/Lynlan.jpg',
     name: 'Lynlan',
     title: 'CEO & CIO',
@@ -31,16 +32,25 @@ const code = [
     desc: '基础的技术问题解决（雾），风梨团队创始人（），状态监测与机器人负责人',
   },
   {
-    avatar: '/teammate/gufan.jpg',
-    name: '孤帆',
-    title: '技术支持',
-    desc: 'Python开发',
+    avatar: '/teammate/明镜台.jpg',
+    name: '明镜台',
+    title: 'COO',
+    desc: '镜羽工作室创始人',
   },
   {
     avatar: '/teammate/pingguomc.png',
     name: 'pingguomc',
     title: 'CHRO',
     desc: '红星我的世界服务器现任腐竹 | 一些杂活',
+  }
+]
+
+const developer = [
+  {
+    avatar: '/teammate/gufan.jpg',
+    name: '孤帆',
+    title: '技术支持',
+    desc: 'Python开发',
   },
   {
     avatar: '/teammate/wangyupu.png',
@@ -100,12 +110,6 @@ const community = [
     desc: 'MCIC服主',
   },
   {
-    avatar: '/teammate/明镜台.jpg',
-    name: '明镜台',
-    title: 'COO',
-    desc: '镜羽工作室创始人',
-  },
-  {
     avatar: '/teammate/Redapple_one.png',
     name: 'Redapple_one',
     title: '宣传',
@@ -150,10 +154,18 @@ const collaboration = [
   </VPTeamPageTitle>
 
   <VPTeamPageSection>
+    <template #title>管理组</template>
+    <template #lead>MCJPG 管理组通过管理组织核心事务，保证了组织的正常运转和未来健康发展，是组织的核心力量</template>
+    <template #members>
+      <VPTeamMembers size="small" :members="admin" />
+    </template>
+  </VPTeamPageSection>
+
+  <VPTeamPageSection>
     <template #title>开发部</template>
     <template #lead>MCJPG 开发者帮助编写代码、审核成员服请求并保持项目的活力。通过贡献新社区服务和帮助完善旧服务，他们使 MCJPG 得以运行</template>
     <template #members>
-      <VPTeamMembers size="small" :members="code" />
+      <VPTeamMembers size="small" :members="developer" />
     </template>
   </VPTeamPageSection>
 
@@ -176,7 +188,7 @@ const collaboration = [
 </VPTeamPage>
 
 
-<center>帮助我们添加服务器的贡献者们：</center>
+<center>帮助我们维护官网的贡献者们：</center>
 
 <center><a href="https://github.com/MineJPGCraft/MCJPG/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=MineJPGCraft/MCJPG" alt="Contributors"/>
