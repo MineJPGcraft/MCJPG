@@ -10,8 +10,9 @@ import {
   VPTeamMembers,
   VPTeamPageSection
 } from 'vitepress/theme'
-const code = [
-    {
+
+const admin = [
+  {
     avatar: '/teammate/Lynlan.jpg',
     name: 'Lynlan',
     title: 'CEO & CIO',
@@ -31,16 +32,25 @@ const code = [
     desc: 'Solves basic technical issues (kinda), founder of the 风梨团队, and head of status monitoring and robotics.',
   },
   {
-    avatar: '/teammate/gufan.jpg',
-    name: '孤帆',
-    title: 'Technical Support',
-    desc: 'Python Development',
+    avatar: '/teammate/明镜台.jpg',
+    name: '明镜台',
+    title: 'COO',
+    desc: 'Founder of 镜羽工作室',
   },
   {
     avatar: '/teammate/pingguomc.png',
     name: 'pingguomc',
     title: 'CHRO',
     desc: 'Server owner of RedStarMC server | Does some miscellaneous work',
+  }
+]
+
+const developer = [
+  {
+    avatar: '/teammate/gufan.jpg',
+    name: '孤帆',
+    title: 'Technical Support',
+    desc: 'Python Development',
   },
   {
     avatar: '/teammate/wangyupu.png',
@@ -100,12 +110,6 @@ const community = [
     desc: 'Owner of the MCIC server',
   },
   {
-    avatar: '/teammate/明镜台.jpg',
-    name: '明镜台',
-    title: 'COO',
-    desc: 'Founder of 镜羽工作室',
-  },
-  {
     avatar: '/teammate/Redapple_one.png',
     name: 'Redapple_one',
     title: 'Publicist',
@@ -150,10 +154,18 @@ const collaboration = [
   </VPTeamPageTitle>
 
   <VPTeamPageSection>
+    <template #title>Management Team</template>
+    <template #lead>The MCJPG management team ensures the normal operation and healthy future development of the organization by managing its core affairs, serving as the backbone of the organization.</template>
+    <template #members>
+      <VPTeamMembers size="small" :members="admin" />
+    </template>
+  </VPTeamPageSection>
+
+  <VPTeamPageSection>
     <template #title>Development Department</template>
     <template #lead>MCJPG developers help write code, review member service requests, and keep the project alive. They keep MCJPG running by contributing new community services and helping to improve old ones!</template>
     <template #members>
-      <VPTeamMembers size="small" :members="code" />
+      <VPTeamMembers size="small" :members="developer" />
     </template>
   </VPTeamPageSection>
 
@@ -175,7 +187,8 @@ const collaboration = [
 
 </VPTeamPage>
 
-<center>Contributors who helped us add servers:</center>
+
+<center>Contributors who helped us maintain the official website:</center>
 
 <center><a href="https://github.com/MineJPGCraft/MCJPG/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=MineJPGCraft/MCJPG" alt="Contributors"/>
