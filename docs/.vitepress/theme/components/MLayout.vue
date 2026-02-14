@@ -2,10 +2,10 @@
 import { useData, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { nextTick, provide } from 'vue'
-import MouseClick from "./MouseClick.vue";
-import MouseFollower from "./MouseFollower.vue";
+import MouseClick from './MouseClick.vue'
+import MouseFollower from './MouseFollower.vue'
 import DifyChatbot from './DifyChatbot.vue'
-import backtotop from "./backtotop.vue"
+import backtotop from './backtotop.vue'
 import { usePageId } from '../composables'
 
 const { Layout } = DefaultTheme
@@ -64,21 +64,13 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 <template>
   <DefaultTheme.Layout v-bind="$attrs">
-
     <template #layout-bottom>
       <backtotop />
       <DifyChatbot />
     </template>
-
-    <template #layout-top>
-      <MouseFollower />
-      <MouseClick />
-    </template>
-
   </DefaultTheme.Layout>
   <AnnouncementSystem />
 </template>
-
 
 <style>
 .prev-next.prev-next {
