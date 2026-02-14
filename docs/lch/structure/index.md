@@ -10,8 +10,9 @@ import {
   VPTeamMembers,
   VPTeamPageSection
 } from 'vitepress/theme'
-const code = [
-    {
+
+const admin = [
+  {
     avatar: '/teammate/Lynlan.jpg',
     name: 'Lynlan',
     title: 'CEO & CIO',
@@ -31,16 +32,25 @@ const code = [
     desc: '解基石之技難,風梨團隊創始人,狀况監察與役機計畫主事',
   },
   {
-    avatar: '/teammate/gufan.jpg',
-    name: '孤帆',
-    title: '技術支援',
-    desc: 'Python營造',
+    avatar: '/teammate/明镜台.jpg',
+    name: '明鏡臺',
+    title: 'COO',
+    desc: '鏡羽工坊創始人',
   },
   {
     avatar: '/teammate/pingguomc.png',
     name: 'pingguomc',
     title: 'CHRO',
     desc: '朕清歌天譴了闡胭脂飲務器之患,幸飲務器之關｜及亂者遂至',
+  }
+]
+
+const developer = [
+  {
+    avatar: '/teammate/gufan.jpg',
+    name: '孤帆',
+    title: '技術支援',
+    desc: 'Python營造',
   },
   {
     avatar: '/teammate/wangyupu.png',
@@ -100,12 +110,6 @@ const community = [
     desc: 'MCIC服之主',
   },
   {
-    avatar: '/teammate/明镜台.jpg',
-    name: '明鏡臺',
-    title: 'COO',
-    desc: '鏡羽工坊創始人',
-  },
-  {
     avatar: '/teammate/Redapple_one.png',
     name: 'Redapple_one',
     title: '宣傳',
@@ -150,10 +154,18 @@ const collaboration = [
   </VPTeamPageTitle>
 
   <VPTeamPageSection>
+    <template #title>治理組</template>
+    <template #lead>MCJPG治理組統籌組織重務,維繫組織常序,確保來日康健發展,實爲組織之骨幹力量。</template>
+    <template #members>
+      <VPTeamMembers size="small" :members="admin" />
+    </template>
+  </VPTeamPageSection>
+
+  <VPTeamPageSection>
     <template #title>開發部</template>
     <template #lead>MCJPG之開發者,助力編撰程式碼,審閱成員伺服請求,並維繫項目之生機。彼等以獻出新社群服務,並助益舊有服務之完善,使MCJPG得以運轉無虞。</template>
     <template #members>
-      <VPTeamMembers size="small" :members="code" />
+      <VPTeamMembers size="small" :members="developer" />
     </template>
   </VPTeamPageSection>
 
@@ -175,7 +187,8 @@ const collaboration = [
 
 </VPTeamPage>
 
-<center>襄助吾等、增益伺服之諸君:</center>
+
+<center>襄助吾等、維護官網之諸君:</center>
 
 <center><a href="https://github.com/MineJPGCraft/MCJPG/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=MineJPGCraft/MCJPG" alt="Contributors"/>
