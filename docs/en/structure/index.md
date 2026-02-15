@@ -16,7 +16,7 @@ const admin = [
     avatar: '/teammate/Lynlan.jpg',
     name: 'Lynlan',
     title: 'CEO & CIO',
-    desc: 'MCJPG web developer | HuggingAI Founder',
+    desc: 'Development Department | MCJPG web developer | HuggingAI Founder',
     links: [
       { icon: 'github', link: 'https://github.com/ZhuYuxuan9302' },
       { icon: {
@@ -29,19 +29,25 @@ const admin = [
     avatar: '/teammate/fireguo.png',
     name: 'FireGuo',
     title: 'CTO & CFO',
-    desc: 'Solves basic technical issues (kinda), founder of the 风梨团队, and head of status monitoring and robotics.',
+    desc: 'Development Department | Solves basic technical issues (kinda), founder of the 风梨团队, and head of status monitoring and robotics.',
+    links: [
+      { icon: 'github', link: 'https://github.com/FireGuo1145' }
+    ],
   },
   {
     avatar: '/teammate/明镜台.jpg',
     name: '明镜台',
     title: 'COO',
-    desc: 'Founder of 镜羽工作室',
+    desc: 'Community Department | Founder of 镜羽工作室',
   },
   {
     avatar: '/teammate/pingguomc.png',
     name: 'pingguomc',
     title: 'CHRO',
-    desc: 'Server owner of RedStarMC server | Does some miscellaneous work',
+    desc: 'Development Department | Server owner of RedStarMC server | Does some miscellaneous work',
+    links: [
+      { icon: 'github', link: 'https://github.com/pingguomc' }
+    ],
   }
 ]
 
@@ -57,12 +63,18 @@ const developer = [
     name: 'wangyupu',
     title: 'Full-stack Developer',
     desc: 'Can write some code',
+    links: [
+      { icon: 'github', link: 'https://github.com/wang-yupu' }
+    ],
   },
   {
     avatar: '/teammate/zzfx1166.jpeg',
     name: 'zzfx1166',
     title: 'Backend Developer',
     desc: 'js/ts backend development',
+    links: [
+      { icon: 'github', link: 'https://github.com/zzfx1166' }
+    ]
   }
 ]
 

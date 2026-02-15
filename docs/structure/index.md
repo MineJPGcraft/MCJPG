@@ -16,7 +16,7 @@ const admin = [
     avatar: '/teammate/Lynlan.jpg',
     name: 'Lynlan',
     title: 'CEO & CIO',
-    desc: 'MCJPG 网络开发 | HuggingAI 创始人',
+    desc: '开发部 | MCJPG 网络开发 | HuggingAI 创始人',
     links: [
       { icon: 'github', link: 'https://github.com/ZhuYuxuan9302' },
       { icon: {
@@ -29,19 +29,25 @@ const admin = [
     avatar: '/teammate/fireguo.png',
     name: 'FireGuo',
     title: 'CTO & CFO',
-    desc: '基础的技术问题解决（雾），风梨团队创始人（），状态监测与机器人负责人',
+    desc: '开发部 | 基础的技术问题解决（雾），风梨团队创始人（），状态监测与机器人负责人',
+    links: [
+      { icon: 'github', link: 'https://github.com/FireGuo1145' }
+    ],
   },
   {
     avatar: '/teammate/明镜台.jpg',
     name: '明镜台',
     title: 'COO',
-    desc: '镜羽工作室创始人',
+    desc: '社区部 | 镜羽工作室创始人',
   },
   {
     avatar: '/teammate/pingguomc.png',
     name: 'pingguomc',
     title: 'CHRO',
-    desc: '红星我的世界服务器现任腐竹 | 一些杂活',
+    desc: '开发部 | 红星我的世界服务器现任腐竹 | 一些杂活',
+    links: [
+      { icon: 'github', link: 'https://github.com/pingguomc' }
+    ],    
   }
 ]
 
@@ -57,12 +63,18 @@ const developer = [
     name: 'wangyupu',
     title: '全栈开发',
     desc: '会写点代码',
+    links: [
+      { icon: 'github', link: 'https://github.com/wang-yupu' }
+    ],        
   },
   {
     avatar: '/teammate/zzfx1166.jpeg',
     name: 'zzfx1166',
     title: '后端开发',
     desc: 'js/ts后端开发',
+    links: [
+      { icon: 'github', link: 'https://github.com/zzfx1166' }
+    ]    
   }
 ]
 
