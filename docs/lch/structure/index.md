@@ -16,7 +16,7 @@ const admin = [
     avatar: '/teammate/Lynlan.jpg',
     name: 'Lynlan',
     title: 'CEO & CIO',
-    desc: 'MCJPG網絡開發｜HuggingAI之主',
+    desc: '開發部｜MCJPG網絡開發｜HuggingAI之主',
     links: [
       { icon: 'github', link: 'https://github.com/ZhuYuxuan9302' },
       { icon: {
@@ -29,19 +29,25 @@ const admin = [
     avatar: '/teammate/fireguo.png',
     name: 'FireGuo',
     title: 'CTO & CFO',
-    desc: '解基石之技難,風梨團隊創始人,狀况監察與役機計畫主事',
+    desc: '開發部｜解基石之技難,風梨團隊創始人,狀况監察與役機計畫主事',
+    links: [
+      { icon: 'github', link: 'https://github.com/FireGuo1145' }
+    ],
   },
   {
     avatar: '/teammate/明镜台.jpg',
     name: '明鏡臺',
     title: 'COO',
-    desc: '鏡羽工坊創始人',
+    desc: '社群部｜鏡羽工坊創始人',
   },
   {
     avatar: '/teammate/pingguomc.png',
     name: 'pingguomc',
     title: 'CHRO',
-    desc: '朕清歌天譴了闡胭脂飲務器之患,幸飲務器之關｜及亂者遂至',
+    desc: '開發部｜紅星我的世界伺服器現任腐竹｜諸般雜務',
+    links: [
+      { icon: 'github', link: 'https://github.com/pingguomc' }
+    ],
   }
 ]
 
@@ -57,12 +63,18 @@ const developer = [
     name: 'wangyupu',
     title: '全棧營造',
     desc: '略解程式碼',
+    links: [
+      { icon: 'github', link: 'https://github.com/wang-yupu' }
+    ],
   },
   {
     avatar: '/teammate/zzfx1166.jpeg',
     name: 'zzfx1166',
     title: '後端營造',
     desc: 'js/ts後端營造',
+    links: [
+      { icon: 'github', link: 'https://github.com/zzfx1166' }
+    ]
   }
 ]
 
