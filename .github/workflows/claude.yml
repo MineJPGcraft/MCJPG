@@ -51,7 +51,7 @@ jobs:
   
           # Optional: Configure Claude's behavior with CLI arguments  
           claude_args: |  
-            --model claude-opus-4-6  
+            --model claude-sonnet-4-6  
             #   --auto-approve  
             #   --max-turns 10  
             #   --allowedTools "Bash(npm install),Bash(npm run build),Bash(npm run test:*),Bash(npm run lint:*)"  
