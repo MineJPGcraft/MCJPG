@@ -13,9 +13,10 @@ export const nav: DefaultTheme.Config['nav'] = [
   {
     text: "Friendly Links",
               items: [
+                { text: "LynSeq", link: "https://lynseq.com" },
                 { text: "MCFlare", link: "https://forum.mcflare.com" },
                 { text: "HuggingAI", link: "https://huggingai.org" },
-                { text: "MSCPO", link: "https://mscpo.top/" },
+                { text: "MSCPO", link: "https://mscpo.com/" },
                 { text: "随风的个人网站", link: "https://zhuyuxuan.link/" },
                 { text: "风梨网", link: "https://www.flweb.cn/" },
               ]
