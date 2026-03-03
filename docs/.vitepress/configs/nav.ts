@@ -19,6 +19,7 @@ export const nav: DefaultTheme.Config['nav'] = [
                 { text: "MSCPO", link: "https://mscpo.com/" },
                 { text: "随风的个人网站", link: "https://zhuyuxuan.link/" },
                 { text: "风梨网", link: "https://www.flweb.cn/" },
+                { text: "苹果的的个人网站", link: "https://pingguomc.github.io/" },
               ]
   }
 ]
