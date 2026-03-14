@@ -41,8 +41,14 @@ export const NAV_DATA: NavData[] = [
       {
         icon: '/logo_AI.png',
         title: 'AI 代理',
-        desc: '免费使用基于国内外先进AI大模型的代理',
+        desc: '使用基于国内外先进AI大模型的AI代理,需要BYOK',
         link: 'https://aiagent.mcjpg.org/',
+      },
+      {
+        icon: '/logo_AI.png',
+        title: 'AI Chat',
+        desc: '免费与国内外先进AI大模型对话',
+        link: 'https://owui.mcjpg.org/',
       },
       {
         icon: '/icons/project/Openlist.svg',

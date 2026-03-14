@@ -41,8 +41,14 @@ export const NAV_DATA: NavData[] = [
       {
         icon: '/logo_AI.png',
         title: '人工智識代理',
-        desc: '無償假借海內外卓犖人工智識巨範之代理',
+        desc: '假借海內外卓犖人工智識巨範之代理，需自備密鑰',
         link: 'https://aiagent.mcjpg.org/',
+      },
+      {
+        icon: '/logo_AI.png',
+        title: '人工智識對話',
+        desc: '無償與海內外卓犖人工智識巨範對話',
+        link: 'https://owui.mcjpg.org/',
       },
       {
         icon: '/icons/project/Openlist.svg',
