@@ -104,7 +104,7 @@ jobs:
             务必使用中文输出审查结果
           claude_args: |
             --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
-            --model claude-sonnet-4-6
+            --model MiniMax-M2.7
           settings: |
             {
               "env": {
