@@ -42,7 +42,7 @@ const admin = [
     avatar: '/teammate/明镜台.jpg',
     name: '明镜台',
     title: 'COO',
-    desc: 'Community Department | Founder of 镜羽工作室',
+    desc: 'Community Department | Founder of 镜羽工作室, Lynlan\'s husband',
   },
   {
     avatar: '/teammate/pingguomc.png',
