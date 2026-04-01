@@ -2,11 +2,11 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 import {  nav, sidebar, } from './'
 
 export const lch = defineConfig({
-    title: 'MCJPG組織網站',
-    description: '礦藝伺服器交流組織 (MCJPG)——致力於礦藝技術交流及伺服器宣傳之新興組織',
+    title: 'AIJPG組織網站',
+    description: '礦藝伺服器交流組織 (AIJPG)——致力於人工智慧技術交流及AI協調之新興組織',
 
     themeConfig: {
-        siteTitle: 'MCJPG組織',
+        siteTitle: 'AIJPG組織',
         nav,
         sidebar,
         editLink: {
@@ -20,8 +20,8 @@ export const lch = defineConfig({
           },
       
         footer: {
-            message: 'MCJPG伺服器交流組織',
-            copyright: '版權所有 © 2026-至今 <a href="https://mcjpg.org/">MCJPG</a>— —<a href="https://github.com/MineJPGcraft/MCJPG">網站代碼倉庫</a>'
+            message: 'AIJPG伺服器交流組織',
+            copyright: '版權所有 © 2026-至今 <a href="https://mcjpg.org/">AIJPG</a>— —<a href="https://github.com/MineJPGcraft/MCJPG">網站代碼倉庫</a>'
           },
       
         lastUpdated: {

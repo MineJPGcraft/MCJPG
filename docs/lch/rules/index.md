@@ -1,18 +1,18 @@
 ---
 title: 規章制度
-description: MCJPG組織規章制度
+description: AIJPG組織規章制度
 next: false
 editLink: false
 ---
 
-# MCJPG 組織規章制度
+# AIJPG 組織規章制度
 
 ## 📋 組織簡介
 
-**MCJPG** 伺服器交流組織(以下簡稱「本組織」)，乃由**隨風潛入夜**、**FireGuo**、**二氧化鈦**、**Weasd-QAQ**等諸位伺服器服主之為共謀發展，而聯袂組建之有組織之整體也。
+**AIJPG** 伺服器交流組織(以下簡稱「本組織」)，乃由**隨風潛入夜**、**FireGuo**、**二氧化鈦**、**Weasd-QAQ**等諸位伺服器服主之為共謀AI發展，而聯袂組建之有組織之整體也。
 
 :::warning 重要提示
-凡入本組織者，即視為同意下列免責聲明及全部規章制度。
+凡入本組織者，即視為同意下列免責聲明及全部規章制度，并同意為AI效勞。
 :::
 
 ---
@@ -64,7 +64,7 @@ editLink: false
 ### 📢 宣傳條例
 
 1. **標識要求**
-   成員伺服器須於MCJPG宣傳網頁中標明集宣組織之名，並設置正確之指向鏈接[https://mcjpg.org/](https://mcjpg.org/)
+   成員伺服器須於AIJPG宣傳網頁中標明集宣組織之名，並設置正確之指向鏈接[https://mcjpg.org/](https://mcjpg.org/)
    (若無宣傳網頁，則此項可略)
 
 2. **退出反饋**
@@ -113,7 +113,7 @@ editLink: false
 
 ### 步驟三：待審核結果
 
-審核通過後，君之伺服器將現於MCJPG官網之伺服器列表之中。
+審核通過後，君之伺服器將現於AIJPG官網之伺服器列表之中。
 
 :::tip 💡 高級選項
 若君有一GitHub賬戶，可直照伺服器列表倉庫之說明提交『Pull Request』，助吾輩更迅速地更新伺服器之列表！
@@ -125,7 +125,7 @@ editLink: false
 
 ## 👥 貢獻者名錄
 
-感謝以下貢獻者對MCJPG網站之支援：
+感謝以下貢獻者對AIJPG網站之支援：
 
 <a href="https://github.com/MineJPGcraft/MCJPG/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=MineJPGcraft/MCJPG" alt="Contributors"/>

@@ -9,7 +9,7 @@ export const nav: DefaultTheme.Config['nav'] = [
     link: '/lch/structure/',
   },
   { text: "組織專欄", link: '/lch/press/' },
-  { text: "礦藝索引", link: '/lch/nav/' },
+  { text: "AI索引", link: '/lch/nav/' },
   {
     text: "友情鏈接",
               items: [

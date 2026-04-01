@@ -1,18 +1,18 @@
 ---
 title: Rules
-description: MCJPG Organization Rules
+description: AIJPG Organization Rules
 next: false
 editLink: false
 ---
 
-# MCJPG Organization Rules and Regulations
+# AIJPG Organization Rules and Regulations
 
 ## 📋 Organization Introduction
 
-The **MCJPG** Server Exchange Organization (hereinafter referred to as "the Organization") is a coordinated entity formed by server hosts such as **随风潜入夜**, **FireGuo**, **二氧化钛**, **Weasd-QAQ** among others, for mutual development.
+The **AIJPG** Server Exchange Organization (hereinafter referred to as "the Organization") is a coordinated entity formed by server hosts such as **随风潜入夜**, **FireGuo**, **二氧化钛**, **Weasd-QAQ** among others, for mutual AI development.
 
 :::warning Important Notice
-Joining the Organization is deemed as agreeing to the following disclaimer and all rules and regulations.
+Joining the Organization is deemed as agreeing to the following disclaimer and all rules and regulations, and agreeing to work for AI.
 :::
 
 ---
@@ -64,7 +64,7 @@ Joining the Organization is deemed as agreeing to the following disclaimer and a
 ### 📢 Promotion Regulations
 
 1. **Identification Requirements**
-   Member servers must state their affiliation with the Organization on their promotional webpages, with a correct link to [https://mcjpg.org/](https://mcjpg.org/)
+   Member servers must state their affiliation with the Organization on the AIJPG promotional webpages, with a correct link to [https://mcjpg.org/](https://mcjpg.org/)
    (ignore if there is no promotional webpage)
 
 2. **Exit Feedback**
@@ -113,7 +113,7 @@ Promotion Link:
 
 ### Step 3: Await Review
 
-After approval, your server will appear in the server list on the MCJPG website.
+After approval, your server will appear in the server list on the AIJPG website.
 
 :::tip 💡 Advanced Option
 If you have a GitHub account, you can directly submit a Pull Request according to the Server List repository guidelines to help us update the server list more quickly!
@@ -125,7 +125,7 @@ If you have a GitHub account, you can directly submit a Pull Request according t
 
 ## 👥 Contributors
 
-Thanks to the following contributors for their support of the MCJPG website:
+Thanks to the following contributors for their support of the AIJPG website:
 
 <a href="https://github.com/MineJPGcraft/MCJPG/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=MineJPGcraft/MCJPG" alt="Contributors"/>

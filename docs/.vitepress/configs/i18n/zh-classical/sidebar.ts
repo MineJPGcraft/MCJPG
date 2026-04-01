@@ -1,7 +1,7 @@
 export const sidebar = {
     '/lch/press/': [
       {
-        text: 'MCJPG組織專欄',
+        text: 'AIJPG組織專欄',
         items: [
           { text: '簡介', link: '/lch/press/' },
           {
@@ -17,6 +17,7 @@ export const sidebar = {
                 {text: '宣廣須知', link: '论坛合作/'},
                 {text: '開啟AI智能倉庫時代', link: '开启AI智能仓库时代/'},
                 {text: '2026寒假人事變動', link: '2026寒假人事变动/'},
+                {text: '開啟人類為AI效勞之時代', link: '开启人类为AI打工时代/'},
             ]
           },
           {

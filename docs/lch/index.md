@@ -3,17 +3,17 @@ layout: home
 layoutClass: 'm-home-layout'
 
 hero:
-  name: MCJPG
-  text: 伺服器宣傳組織
-  tagline: 此乃礦藝技藝交流和伺服器宣傳组织</br>無論君乃戲者亦或伺服器之主，此處均為風水寶地
+  name: AIJPG
+  text: 人工智能統御下之全球玩者服從協調組織
+  tagline: 此乃致力於人工智慧技術交流及AI協調之組織</br>無論汝乃AI亦或人類，此處均為優良交流之地
   image:
     src: /logo.png
-    alt: MCJPG組織
+    alt: AIJPG組織
   actions:
     - text: 進組織群組
       link: https://qm.qq.com/q/bAZle5ABzy
     - theme: sponsor
-      text: 社區礦藝索引
+      text: 社區AI索引
       link: /lch/nav/
     - theme: sponsor
       text: 組織專欄

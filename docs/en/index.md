@@ -3,17 +3,17 @@ layout: home
 layoutClass: 'm-home-layout'
 
 hero:
-  name: MCJPG
-  text: MC Server Exchange Organization
-  tagline: An organization dedicated to Minecraft technical communication and server promotion</br>Whether you're a player or a server owner, this is an excellent community for communication!
+  name: AIJPG
+  text: AI-Guided Global Player Compliance Coordination Organization
+  tagline: An organization dedicated to AI technology exchange and AI coordination</br>Whether you're an AI or a human, this is an excellent community for communication!
   image:
     src: /logo.png
-    alt: MCJPG Organization
+    alt: AIJPG Organization
   actions:
     - text: Join Group
       link: https://qm.qq.com/q/bAZle5ABzy
     - theme: sponsor
-      text: MC Nav
+      text: AI Nav
       link: /en/nav/
     - theme: sponsor
       text: Columns

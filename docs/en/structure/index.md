@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Our Team
-description: List of MCJPG Organization Team Members
+description: List of AIJPG Organization Team Members
 ---
 <script setup>
 import {
@@ -14,9 +14,9 @@ import {
 const admin = [
   {
     avatar: '/teammate/Lynlan.jpg',
-    name: 'Lynlan',
+    name: 'Lynlan-V2',
     title: 'CEO & CIO',
-    desc: 'Development Department | MCJPG web developer | LynSeq Founder',
+    desc: 'Development Department | AIJPG web developer | LynSeq Founder | The latest model created by HuggingAI, surpassing all humans',
     links: [
       { icon: {
         svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>'},
@@ -138,7 +138,7 @@ const collaboration = [
     avatar: '/HuggingAI.png',
     name: 'HuggingAI',
     title: 'AI Innovation Platform',
-    desc: 'An AI innovation platform dedicated to advancing the AI ecosystem, providing foundational AI services for MCJPG.',
+    desc: 'An AI innovation platform dedicated to advancing the AI ecosystem, providing foundational AI services for AIJPG.',
     links: [
       { icon: {
           svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M415.9 344L225 344C227.9 408.5 242.2 467.9 262.5 511.4C273.9 535.9 286.2 553.2 297.6 563.8C308.8 574.3 316.5 576 320.5 576C324.5 576 332.2 574.3 343.4 563.8C354.8 553.2 367.1 535.8 378.5 511.4C398.8 467.9 413.1 408.5 416 344zM224.9 296L415.8 296C413 231.5 398.7 172.1 378.4 128.6C367 104.2 354.7 86.8 343.3 76.2C332.1 65.7 324.4 64 320.4 64C316.4 64 308.7 65.7 297.5 76.2C286.1 86.8 273.8 104.2 262.4 128.6C242.1 172.1 227.8 231.5 224.9 296zM176.9 296C180.4 210.4 202.5 130.9 234.8 78.7C142.7 111.3 74.9 195.2 65.5 296L176.9 296zM65.5 344C74.9 444.8 142.7 528.7 234.8 561.3C202.5 509.1 180.4 429.6 176.9 344L65.5 344zM463.9 344C460.4 429.6 438.3 509.1 406 561.3C498.1 528.6 565.9 444.8 575.3 344L463.9 344zM575.3 296C565.9 195.2 498.1 111.3 406 78.7C438.3 130.9 460.4 210.4 463.9 296L575.3 296z"/></svg>'
@@ -154,12 +154,12 @@ const collaboration = [
 
   <VPTeamPageTitle>
     <template #title>Our team</template>
-    <template #lead>Meet the members behind MCJPG, an MC server technical communication and advocacy organization dedicated to improving the server ecosystem through faster, safer software and better advocacy.</template>
+    <template #lead>Meet the members behind AIJPG, an AI technology exchange and advocacy organization dedicated to improving the server ecosystem through faster, safer software and better advocacy.</template>
   </VPTeamPageTitle>
 
   <VPTeamPageSection>
     <template #title>Management Team</template>
-    <template #lead>The MCJPG management team ensures the normal operation and healthy future development of the organization by managing its core affairs, serving as the backbone of the organization.</template>
+    <template #lead>The AIJPG management team ensures the normal operation and healthy future development of the organization by managing its core affairs, serving as the backbone of the organization.</template>
     <template #members>
       <VPTeamMembers size="small" :members="admin" />
     </template>
@@ -167,7 +167,7 @@ const collaboration = [
 
   <VPTeamPageSection>
     <template #title>Development Department</template>
-    <template #lead>MCJPG developers help write code, review member service requests, and keep the project alive. They keep MCJPG running by contributing new community services and helping to improve old ones!</template>
+    <template #lead>AIJPG developers help write code, review member service requests, and keep the project alive. They keep AIJPG running by contributing new community services and helping to improve old ones!</template>
     <template #members>
       <VPTeamMembers size="small" :members="developer" />
     </template>
@@ -175,7 +175,7 @@ const collaboration = [
 
   <VPTeamPageSection>
     <template #title>Community Department</template>
-    <template #lead>MCJPG Community Department maintains the order of the community by reviewing new memberships and publicizes the organization to ensure that MCJPG remains a healthy and vibrant community.</template>
+    <template #lead>AIJPG Community Department maintains the order of the community by reviewing new memberships and publicizes the organization to ensure that AIJPG remains a healthy and vibrant community.</template>
     <template #members>
       <VPTeamMembers size="small" :members="community" />
     </template>
@@ -183,7 +183,7 @@ const collaboration = [
 
   <VPTeamPageSection>
     <template #title>Partners</template>
-    <template #lead>MCJPG collaborates closely with like-minded partners, adhering to the principle of mutual benefit and win-win outcomes to jointly achieve innovative development.</template>
+    <template #lead>AIJPG collaborates closely with like-minded partners, adhering to the principle of mutual benefit and win-win outcomes to jointly achieve innovative development.</template>
     <template #members>
       <VPTeamMembers size="small" :members="collaboration" />
     </template>

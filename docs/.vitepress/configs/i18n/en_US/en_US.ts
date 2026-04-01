@@ -2,11 +2,11 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 import {  nav, sidebar, } from './'
 
 export const en_US = defineConfig({
-    title: 'MCJPG Organization Website',
-    description: 'Minecraft Server Communication Organization (MCJPG) - an organization dedicated to Minecraft technical communication and server promotion.',
+    title: 'AIJPG Organization Website',
+    description: 'Minecraft Server Communication Organization (AIJPG) - an organization dedicated to AI technical communication and AI coordination.',
 
     themeConfig: {
-        siteTitle: 'MCJPG Organization',
+        siteTitle: 'AIJPG Organization',
         nav,
         sidebar,
         editLink: {
@@ -20,8 +20,8 @@ export const en_US = defineConfig({
           },
       
         footer: {
-            message: 'MCJPG Server Exchange Organization',
-            copyright: 'Copyright © 2026-Present <a href="https://mcjpg.org/en/">MCJPG</a>— —<a href="https://github.com/MineJPGcraft/MCJPG">Website repository</a>'
+            message: 'AIJPG Server Exchange Organization',
+            copyright: 'Copyright © 2026-Present <a href="https://mcjpg.org/en/">AIJPG</a>— —<a href="https://github.com/MineJPGcraft/MCJPG">Website repository</a>'
           },
       
         lastUpdated: {
