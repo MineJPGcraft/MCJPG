@@ -342,8 +342,8 @@ export const NAV_DATA: NavData[] = [
     items: [
       {
         icon: '/logo.png',
-        title: 'MCJPG组织',
-        desc: 'MCJPG组织官网',
+        title: 'AIJPG组织',
+        desc: 'AIJPG组织官网',
         link: 'https://mcjpg.org',
       },
       {

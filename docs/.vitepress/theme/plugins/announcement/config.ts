@@ -25,8 +25,8 @@ export interface AnnouncementConfig {
 export const announcements: AnnouncementConfig[] = [
   {
     id: 'welcome',
-    title: '欢迎来到 MCJPG',
-    content: '🎉 欢迎来到 MCJPG 官网！',
+    title: '欢迎来到 AIJPG',
+    content: '🎉 欢迎来到 AIJPG 官网！',
     type: 'info',
     priority: 100,
     showIcon: true,
@@ -38,7 +38,7 @@ export const announcements: AnnouncementConfig[] = [
   {
     id: 'new-feature',
     title: '新年快乐',
-    content: '✨ MCJPG组织祝大家2026新年快乐！',
+    content: '✨ AIJPG组织祝大家2026新年快乐！',
     type: 'info',
     priority: 200,
     startTime: '2025-12-31',

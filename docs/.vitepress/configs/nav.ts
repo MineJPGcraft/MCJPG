@@ -9,7 +9,7 @@ export const nav: DefaultTheme.Config['nav'] = [
     link: '/structure/',
   },
   { text: "组织专栏", link: '/press/' },
-  { text: "MC导航", link: '/nav/' },
+  { text: "AI导航", link: '/nav/' },
   {
     text: "友情链接",
               items: [

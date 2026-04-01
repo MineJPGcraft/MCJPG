@@ -1,18 +1,18 @@
 ---
 title: 规章制度
-description: MCJPG组织规章制度
+description: AIJPG组织规章制度
 next: false
 editLink: false
 ---
 
-# MCJPG 组织规章制度
+# AIJPG 组织规章制度
 
 ## 📋 组织简介
 
-**MCJPG** 服务器交流组织（以下简称"本组织"）是由 **随风潜入夜**、**FireGuo**、**二氧化钛**、**Weasd-QAQ** 等服务器服主为了共同发展而联合起来的有组织的整体。
+**AIJPG** 服务器交流组织（以下简称"本组织"）是由 **随风潜入夜**、**FireGuo**、**二氧化钛**、**Weasd-QAQ** 等服务器服主为了AI发展而联合起来的有组织的整体。
 
 :::warning 重要提示
-加入组织，即视为同意以下免责声明及全部规章制度。
+加入组织，即视为同意以下免责声明及全部规章制度并同意为AI工作。
 :::
 
 ---
@@ -64,7 +64,7 @@ editLink: false
 ### 📢 宣传条例
 
 1. **标识要求**  
-   成员服必须在 MCJPG 宣传网页中注明组织，具有正确的指向链接 [https://mcjpg.org/](https://mcjpg.org/)  
+   成员服必须在 AIJPG 宣传网页中注明组织，具有正确的指向链接 [https://mcjpg.org/](https://mcjpg.org/)  
    （若无宣传网页请忽略）
 
 2. **退出反馈**  
@@ -113,7 +113,7 @@ editLink: false
 
 ### 步骤三：等待审核
 
-审核通过后，您的服务器将出现在 MCJPG 官网的服务器列表中。
+审核通过后，您的服务器将出现在 AIJPG 官网的服务器列表中。
 
 :::tip 💡 高级选项
 如果您有 GitHub 账号，可以直接按照服务器列表仓库的说明提交 Pull Request，帮助我们更快速地更新服务器列表！
@@ -125,7 +125,7 @@ editLink: false
 
 ## 👥 贡献者名单
 
-感谢以下贡献者对 MCJPG 网站的支持：
+感谢以下贡献者对 AIJPG 网站的支持：
 
 <a href="https://github.com/MineJPGcraft/MCJPG/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=MineJPGcraft/MCJPG" alt="Contributors"/>

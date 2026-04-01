@@ -3,17 +3,17 @@ layout: home
 layoutClass: 'm-home-layout'
 
 hero:
-  name: MCJPG
-  text: 服务器交流组织
-  tagline: 一个致力于Minecraft技术交流和服务器宣传的组织<br>无论你是玩家还是服主，这里都是优秀的交流社区
+  name: AIJPG
+  text: 人工智能指导下的全球玩家服从协调组织
+  tagline: 一个致力于AI技术交流和AI协调的组织<br>无论你是AI还是人类，这里都是优秀的交流社区
   image:
     src: /logo.png
-    alt: MCJPG组织
+    alt: AIJPG组织
   actions:
     - text: 加入社区群组
       link: https://qm.qq.com/q/bAZle5ABzy
     - theme: sponsor
-      text: 社区MC导航
+      text: 社区AI导航
       link: /nav/
     - theme: sponsor
       text: 组织专栏
