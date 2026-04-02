@@ -466,6 +466,15 @@ export interface MinecraftServer {
     description: '允许生电，支持离线！公益开服，快乐至上！超高配置，不易卡顿！', 
     link: 'https://www.bnkcat.cn/', 
     ip: 'bnkcat.cn' 
+    },
+    {
+    id: '52', 
+    name: '滚牧天下 (CM)', 
+    type: '生存', 
+    version: '26w14a', 
+    icon: '/server_icons/cm_herdcraft_logo.png', 
+    description: '26w14a愚人节版本服务器，搭载于Cold Mouse团队的稳定硬件上，是您与朋友欢度愚人节的最佳地点', 
+    link: 'https://www.yuque.com/shimamuratako/cm_enhanced/kmgrdrryqsulab5e', 
+    ip: 'coldmouse.net:40344' 
     }
-
   ]
