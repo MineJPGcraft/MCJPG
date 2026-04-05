@@ -51,6 +51,12 @@ export const NAV_DATA: NavData[] = [
         link: 'https://owui.mcjpg.org/',
       },
       {
+        icon: '/logo_AI.png',
+        title: 'Charity API',
+        desc: 'Our public welfare large model API site',
+        link: 'https://charity-api.mcjpg.org/',
+      },
+      {
         icon: '/icons/project/Openlist.svg',
         title: 'FDS',
         desc: 'File distribution service for easy sharing',
