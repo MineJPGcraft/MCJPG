@@ -20,7 +20,7 @@ hero:
       link: /lch/press/
     - theme: sponsor
       text: MCFlare社區
-      link: https://forum.mcflare.com
+      link: https://www.mcflare.com
 
 features:
   - icon:

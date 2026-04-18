@@ -64,7 +64,7 @@ export const NAV_DATA: NavData[] = [
         icon: '/MCFlare.ico',
         title: 'MCFlare',
         desc: '一个新兴的Minecraft技术交流社区',
-        link: 'https://forum.mcflare.com/',
+        link: 'https://www.mcflare.com/',
       },
       {
         //icon: 'https://klpbbs.com/favicon.ico',
