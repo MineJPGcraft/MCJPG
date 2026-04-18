@@ -17,7 +17,7 @@ We are well aware that the digital experience of the new era demands higher serv
 
 ## Incubating a High-Quality Community—MCFlare
 
-This year, **MCJPG** successfully incubated the technical exchange community [MCFlare](https://forum.mcflare.com), creating a new home for resource sharing and technical gameplay exchange. Within the **MCFlare** community, players and server owners can not only exchange knowledge on server architecture and gameplay innovation but also freely enjoy the AI dialogue feature, which has become a unique hallmark of integrated community collaboration.
+This year, **MCJPG** successfully incubated the technical exchange community [MCFlare](https://www.mcflare.com), creating a new home for resource sharing and technical gameplay exchange. Within the **MCFlare** community, players and server owners can not only exchange knowledge on server architecture and gameplay innovation but also freely enjoy the AI dialogue feature, which has become a unique hallmark of integrated community collaboration.
 This is the successor to our previous, short-lived [Community Forum](https://com.mcjpg.org). We learned from prior experience, changed the management structure, and established a more effective and reasonable management mechanism by incubating **MCFlare** as a sub-project of **MCJPG**.
 
 ## Powerful Alliance: Breaking Down Barriers in the Server Ecosystem through Cooperation
