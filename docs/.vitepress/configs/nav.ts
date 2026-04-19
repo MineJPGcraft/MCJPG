@@ -20,6 +20,7 @@ export const nav: DefaultTheme.Config['nav'] = [
                 { text: "随风的个人网站", link: "https://zhuyuxuan.link/" },
                 { text: "风梨网", link: "https://www.flweb.cn/" },
                 { text: "苹果的个人网站", link: "https://pingguomc.github.io/" },
+                { text: "镜羽blog", link: "https://i.jingyucloud.cn/" },
               ]
   }
 ]
