@@ -108,7 +108,7 @@ jobs:
           settings: |
             {
               "env": {
-                "ANTHROPIC_BASE_URL": "https://aigateway.huggingai.org"
+                "ANTHROPIC_BASE_URL": "https://api.huggingai.org"
               }
             }
 
