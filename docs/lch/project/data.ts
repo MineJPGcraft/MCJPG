@@ -40,9 +40,9 @@ export const NAV_DATA: NavData[] = [
       },
       {
         icon: '/logo_AI.png',
-        title: '人工智識對話',
-        desc: '無償與海內外卓犖人工智識巨範對話',
-        link: 'https://owui.mcjpg.org/',
+        title: 'AskAI',
+        desc: '有疑問乎？可詢AI！',
+        link: 'https://askai.mcjpg.org/',
       },
       {
         icon: '/logo_AI.png',
