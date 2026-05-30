@@ -40,9 +40,9 @@ export const NAV_DATA: NavData[] = [
       },
       {
         icon: '/logo_AI.png',
-        title: '人工智識對話',
-        desc: '無償與海內外卓犖人工智識巨範對話',
-        link: 'https://owui.mcjpg.org/',
+        title: 'AskAI',
+        desc: '有疑問乎？可詢AI！',
+        link: 'https://askai.mcjpg.org/',
       },
       {
         icon: '/logo_AI.png',
@@ -84,6 +84,28 @@ export const NAV_DATA: NavData[] = [
         title: 'ServerListSync',
         desc: '可速同步衆戲之列表',
         link: 'https://modrinth.com/mod/serverlistsync',
+      },
+    ],
+  },
+  {
+    title: '伺服器插件',
+    items: [
+      {
+        icon: '/icons/project/webhook.jpg',
+        title: 'Minecraft Webhook',
+        desc: '監聽事件，發送Webhook',
+        link: 'https://github.com/MineJPGcraft/Minecraft-Webhook',
+      },
+    ],
+  },
+  {
+    title: '機器人插件',
+    items: [
+      {
+        icon: '/icons/project/bot.jpg',
+        title: 'MCTool',
+        desc: '通群服互聯，可綁帳號查死亡',
+        link: 'https://github.com/MineJPGcraft/koishi-plugin-mctool',
       },
     ],
   },
