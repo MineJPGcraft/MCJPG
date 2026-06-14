@@ -839,7 +839,7 @@ onUnmounted(() => {
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
-  scroll-margin-top: 16px;
+  scroll-margin-top: 64px;
 }
 
 .server-card {
