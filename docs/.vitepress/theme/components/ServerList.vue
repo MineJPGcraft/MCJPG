@@ -271,7 +271,7 @@ const checkServerStatus = async (ip) => {
 // 批量检查（控制并发，避免一次性打爆接口）
 const checkAllStatus = async () => {
   const ips = servers.value.map((s) => s?.ip).filter(Boolean)
-  const CONCURRENCY = 6
+  const CONCURRENCY = 5
   for (let i = 0; i < ips.length; i += CONCURRENCY) {
     const batch = ips.slice(i, i + CONCURRENCY)
     await Promise.allSettled(batch.map((ip) => checkServerStatus(ip)))
