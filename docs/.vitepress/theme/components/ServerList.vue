@@ -128,9 +128,7 @@
               <div class="server-icon-wrapper">
                 <VPImage
                   v-if="processedIcon(server)"
-              <VPImage
-                v-if="processedIcon(server) as icon"
-                :image="icon"
+                  :image="processedIcon(server)"
                   class="server-icon"
                   loading="lazy"
                 />
@@ -169,8 +167,7 @@
               </div>
             </div>
 
-            <template v-if="descriptionLines(server).length > 0">
-              <div class="server-description">
+            <div v-if="descriptionLines(server).length" class="server-description">
               <span
                 v-for="(line, index) in descriptionLines(server)"
                 :key="index"
