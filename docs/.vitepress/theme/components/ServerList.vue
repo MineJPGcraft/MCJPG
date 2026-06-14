@@ -114,52 +114,49 @@
 
       <!-- 服务器卡片列表 -->
       <template v-else>
-        <div class="server-grid">
+        <div ref="gridRef" class="server-grid">
           <a
-            v-for="server in paginatedServers"
-            :key="server.id"
-            :href="server.link || undefined"
-            :target="server.link ? '_blank' : undefined"
+            v-for="item in paginatedServers"
+            :key="item.id"
+            :href="item.link || undefined"
+            :target="item.link ? '_blank' : undefined"
             rel="noopener noreferrer"
             class="server-card"
-            :class="{ 'server-card--disabled': !server.link }"
+            :class="{ 'server-card--disabled': !item.link }"
           >
             <div class="card-content">
               <div class="server-icon-wrapper">
                 <VPImage
-                  v-if="processedIcon(server)"
-                  :image="processedIcon(server)"
+                  v-if="item.icon"
+                  :image="item.icon"
                   class="server-icon"
                   loading="lazy"
                 />
-                <span v-else class="server-icon-fallback">{{ initialOf(server.name) }}</span>
+                <span v-else class="server-icon-fallback">{{ item.initial }}</span>
               </div>
               <div class="server-info">
-                <h3 class="server-name">{{ server.name || '未命名服务器' }}</h3>
+                <h3 class="server-name">{{ item.name }}</h3>
                 <div class="server-tags">
                   <div class="tags-container">
-                    <span v-if="server.type" class="tag type-tag">{{ server.type }}</span>
-                    <span v-if="server.version" class="tag version-tag">{{ server.version }}</span>
-                    <template v-if="server.ip">
-                      <span
-                        class="tag status-tag"
-                        :class="statusOf(server.ip).online ? 'online' : 'offline'"
-                      >
+                    <span v-if="item.type" class="tag type-tag">{{ item.type }}</span>
+                    <span v-if="item.version" class="tag version-tag">{{ item.version }}</span>
+                    <template v-if="item.ip">
+                      <span class="tag status-tag" :class="item.status.online ? 'online' : 'offline'">
                         <i
                           class="status-dot"
-                          :class="{ 'status-dot--pulse': statusOf(server.ip).online }"
+                          :class="{ 'status-dot--pulse': item.status.online }"
                         ></i>
-                        {{ statusOf(server.ip).online ? '在线' : '离线' }}
+                        {{ item.status.online ? '在线' : '离线' }}
                       </span>
                       <span
-                        v-if="statusOf(server.ip).online && statusOf(server.ip).delay != null"
+                        v-if="item.status.online && item.status.delay != null"
                         class="tag delay-tag"
-                        :class="getDelayClass(statusOf(server.ip).delay)"
+                        :class="getDelayClass(item.status.delay)"
                       >
-                        {{ Math.round(statusOf(server.ip).delay) }}ms
+                        {{ Math.round(item.status.delay) }}ms
                       </span>
-                      <span v-if="statusOf(server.ip).online" class="tag players-tag">
-                        👥 {{ statusOf(server.ip).players.online }}/{{ statusOf(server.ip).players.max }}
+                      <span v-if="item.status.online" class="tag players-tag">
+                        👥 {{ item.status.players.online }}/{{ item.status.players.max }}
                       </span>
                     </template>
                   </div>
@@ -167,12 +164,8 @@
               </div>
             </div>
 
-            <div v-if="descriptionLines(server).length" class="server-description">
-              <span
-                v-for="(line, index) in descriptionLines(server)"
-                :key="index"
-                class="desc-line"
-              >
+            <div v-if="item.descLines.length" class="server-description">
+              <span v-for="(line, index) in item.descLines" :key="index" class="desc-line">
                 {{ line }}
               </span>
             </div>
@@ -184,9 +177,14 @@
           <!-- 每页数量 -->
           <div class="pagination__size">
             <span>每页</span>
-            <select v-model.number="pageSize" class="page-size-select" aria-label="每页显示数量">
-              <option v-for="opt in pageSizeOptions" :key="opt" :value="opt">{{ opt }}</option>
-            </select>
+            <label class="custom-select custom-select--sm">
+              <select v-model.number="pageSize" aria-label="每页显示数量">
+                <option v-for="opt in pageSizeOptions" :key="opt" :value="opt">{{ opt }}</option>
+              </select>
+              <svg class="select-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M7 10l5 5 5-5z" />
+              </svg>
+            </label>
             <span>个</span>
           </div>
 
@@ -242,7 +240,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { VPImage } from 'vitepress/theme'
 
 const props = defineProps({
@@ -262,15 +260,13 @@ const props = defineProps({
     type: Number,
     default: 10000,
   },
-  // 默认每页数量
   defaultPageSize: {
     type: Number,
     default: 9,
   },
-  // 可选的每页数量列表
   pageSizeOptions: {
     type: Array,
-    default: () => [3, 6, 9, 12, 15],
+    default: () => [6, 9, 12, 24, 48],
   },
 })
 
@@ -284,6 +280,11 @@ const serverTypes = ref([])
 const serverVersions = ref([])
 const isLoading = ref(true)
 const loadError = ref(null)
+const gridRef = ref(null)
+
+// 卸载标志 + 请求中止控制器集合
+let isUnmounted = false
+const activeControllers = new Set()
 
 // 离线兜底状态
 const OFFLINE_STATUS = Object.freeze({
@@ -296,7 +297,7 @@ const OFFLINE_STATUS = Object.freeze({
 
 const statusOf = (ip) => serverStatus.value[ip] || OFFLINE_STATUS
 
-// 处理图标：缺失/非法时返回 null，由模板降级为首字母
+// 处理图标：缺失/非法时返回 null
 const processedIcon = (server) => {
   if (!server) return null
   const icon = server.icon
@@ -330,19 +331,21 @@ const getDelayClass = (delay) => {
   return 'poor'
 }
 
-// 带超时的 fetch
+// 带超时 + 可中止的 fetch（受卸载控制）
 const fetchWithTimeout = async (url, options = {}, timeout = props.requestTimeout) => {
   const controller = new AbortController()
+  activeControllers.add(controller)
   const timer = setTimeout(() => controller.abort(), timeout)
   try {
     return await fetch(url, { ...options, signal: controller.signal })
   } finally {
     clearTimeout(timer)
+    activeControllers.delete(controller)
   }
 }
 
 const checkServerStatus = async (ip) => {
-  if (!ip) return
+  if (!ip || isUnmounted) return
   try {
     const encodedIp = encodeURIComponent(ip)
     const response = await fetchWithTimeout(`${props.statusApiUrl}?ip=${encodedIp}`, {
@@ -350,6 +353,8 @@ const checkServerStatus = async (ip) => {
     })
     if (!response.ok) throw new Error(`status ${response.status}`)
     const data = await response.json()
+
+    if (isUnmounted) return // 卸载后不再写入
 
     serverStatus.value[ip] = {
       online: Boolean(data.online),
@@ -362,6 +367,7 @@ const checkServerStatus = async (ip) => {
       version: data.version || '',
     }
   } catch (error) {
+    if (isUnmounted) return
     if (error.name !== 'AbortError') {
       console.error(`检查服务器 ${ip} 状态时出错:`, error)
     }
@@ -369,11 +375,11 @@ const checkServerStatus = async (ip) => {
   }
 }
 
-// 批量检查（控制并发）
 const checkAllStatus = async () => {
   const ips = servers.value.map((s) => s?.ip).filter(Boolean)
   const CONCURRENCY = 5
   for (let i = 0; i < ips.length; i += CONCURRENCY) {
+    if (isUnmounted) return
     const batch = ips.slice(i, i + CONCURRENCY)
     await Promise.allSettled(batch.map((ip) => checkServerStatus(ip)))
   }
@@ -422,18 +428,37 @@ const jumpInput = ref('')
 
 const totalPages = computed(() => Math.max(1, Math.ceil(filteredServers.value.length / pageSize.value)))
 
+// 预计算当前页数据：图标 / 状态 / 描述行 一次性算好，模板直接读
 const paginatedServers = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value
-  return filteredServers.value.slice(start, start + pageSize.value)
+  return filteredServers.value.slice(start, start + pageSize.value).map((server) => ({
+    id: server.id,
+    name: server.name || '未命名服务器',
+    link: server.link || '',
+    ip: server.ip || '',
+    type: server.type || '',
+    version: server.version || '',
+    icon: processedIcon(server),
+    initial: initialOf(server.name),
+    descLines: descriptionLines(server),
+    status: server.ip ? statusOf(server.ip) : OFFLINE_STATUS,
+  }))
 })
+
+// 翻页后滚动到列表顶部（而非页面顶部），移动端体验更好
+const scrollToGrid = () => {
+  nextTick(() => {
+    if (gridRef.value && typeof gridRef.value.scrollIntoView === 'function') {
+      gridRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  })
+}
 
 const goToPage = (page) => {
   const target = Math.min(Math.max(1, page), totalPages.value)
   if (target === currentPage.value) return
   currentPage.value = target
-  if (typeof window !== 'undefined') {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  scrollToGrid()
 }
 
 const handleJump = () => {
@@ -442,7 +467,6 @@ const handleJump = () => {
   jumpInput.value = ''
 }
 
-// 智能页码：首页、末页、当前页±1，超出用省略号
 const visiblePages = computed(() => {
   const total = totalPages.value
   const cur = currentPage.value
@@ -466,15 +490,12 @@ const visiblePages = computed(() => {
   return pages
 })
 
-// 搜索/筛选变化时回到第 1 页
 watch([searchQuery, selectedType, selectedVersion], () => {
   currentPage.value = 1
 })
-// 每页数量变化时回到第 1 页
 watch(pageSize, () => {
   currentPage.value = 1
 })
-// 总页数变化时校正当前页
 watch(totalPages, (tp) => {
   if (currentPage.value > tp) currentPage.value = tp
 })
@@ -493,6 +514,8 @@ const fetchServerList = async () => {
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
 
     const data = await response.json()
+    if (isUnmounted) return
+
     servers.value = normalizeServers(Array.isArray(data) ? data : data.servers)
 
     serverTypes.value = Array.isArray(data.types)
@@ -507,10 +530,11 @@ const fetchServerList = async () => {
     currentPage.value = 1
     checkAllStatus()
   } catch (error) {
+    if (isUnmounted) return
     console.error('获取服务器列表失败:', error)
     loadError.value = error.name === 'AbortError' ? '请求超时，请检查网络后重试' : error.message
   } finally {
-    isLoading.value = false
+    if (!isUnmounted) isLoading.value = false
   }
 }
 
@@ -519,12 +543,16 @@ let pollTimer = null
 onMounted(async () => {
   await fetchServerList()
   pollTimer = setInterval(() => {
-    if (servers.value.length) checkAllStatus()
+    if (!isUnmounted && servers.value.length) checkAllStatus()
   }, props.pollInterval)
 })
 
 onUnmounted(() => {
+  isUnmounted = true
   if (pollTimer) clearInterval(pollTimer)
+  // 中止所有进行中的请求
+  activeControllers.forEach((c) => c.abort())
+  activeControllers.clear()
 })
 </script>
 
@@ -607,7 +635,6 @@ onUnmounted(() => {
   width: 100%;
 }
 
-/* 搜索框 */
 .search-wrapper {
   position: relative;
   flex: 1;
@@ -678,7 +705,6 @@ onUnmounted(() => {
   color: var(--vp-c-danger, var(--vp-c-red));
 }
 
-/* 自定义下拉框 */
 .select-wrapper {
   display: flex;
   gap: 8px;
@@ -718,6 +744,18 @@ onUnmounted(() => {
   box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
 }
 
+.custom-select--sm {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.custom-select--sm select {
+  padding: 7px 30px 7px 10px;
+  height: 34px;
+  font-size: 0.9em;
+  border-radius: 8px;
+}
+
 .select-arrow {
   position: absolute;
   right: 10px;
@@ -734,7 +772,6 @@ onUnmounted(() => {
   color: var(--vp-c-brand);
 }
 
-/* 类型快捷标签 */
 .type-chips {
   display: flex;
   flex-wrap: wrap;
@@ -784,6 +821,16 @@ onUnmounted(() => {
   color: var(--vp-c-danger, var(--vp-c-red));
 }
 
+.result-meta {
+  font-size: 0.85em;
+  color: var(--vp-c-text-3);
+  margin-bottom: 18px;
+}
+
+.result-meta__online {
+  color: var(--vp-c-green);
+}
+
 /* ===== 卡片网格 ===== */
 .server-grid {
   display: grid;
@@ -792,6 +839,7 @@ onUnmounted(() => {
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
+  scroll-margin-top: 16px;
 }
 
 .server-card {
@@ -880,7 +928,6 @@ onUnmounted(() => {
   white-space: nowrap;
 }
 
-/* 标签：自动换行，不再横向滚动 */
 .server-tags {
   width: 100%;
 }
@@ -918,6 +965,8 @@ onUnmounted(() => {
 .status-tag.online {
   background-color: var(--vp-c-green-soft);
   color: var(--vp-c-green);
+  /* 给脉冲动画提供跟随主题的颜色 */
+  --pulse-color: var(--vp-c-green);
 }
 
 .status-tag.offline {
@@ -934,19 +983,18 @@ onUnmounted(() => {
 }
 
 .status-dot--pulse {
-  box-shadow: 0 0 0 0 currentColor;
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--pulse-color, currentColor) 50%, transparent);
   }
   70% {
-    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--pulse-color, currentColor) 0%, transparent);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--pulse-color, currentColor) 0%, transparent);
   }
 }
 
@@ -1113,16 +1161,6 @@ onUnmounted(() => {
   font-size: 0.85em;
 }
 
-.page-size-select {
-  height: 34px;
-  padding: 0 8px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  cursor: pointer;
-}
-
 .jump-input {
   width: 56px;
   height: 34px;
@@ -1135,13 +1173,11 @@ onUnmounted(() => {
   box-sizing: border-box;
 }
 
-.jump-input:focus,
-.page-size-select:focus {
+.jump-input:focus {
   outline: none;
   border-color: var(--vp-c-brand);
 }
 
-/* 去掉数字输入框的上下箭头 */
 .jump-input::-webkit-outer-spin-button,
 .jump-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -1175,6 +1211,19 @@ onUnmounted(() => {
     padding: 8px;
   }
 
+  .filters {
+    padding: 12px;
+  }
+
+  .custom-select {
+    min-width: 0;
+  }
+
+  .chip {
+    padding: 4px 12px;
+    font-size: 0.78em;
+  }
+
   .server-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -1196,17 +1245,6 @@ onUnmounted(() => {
   .tag {
     padding: 2px 6px;
     font-size: 0.75em;
-  }
-
-  .filters {
-    padding: 12px;
-  }
-  .custom-select {
-    min-width: 0;
-  }
-  .chip {
-    padding: 4px 12px;
-    font-size: 0.78em;
   }
 
   .server-description {
