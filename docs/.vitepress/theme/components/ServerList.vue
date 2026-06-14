@@ -128,7 +128,9 @@
               <div class="server-icon-wrapper">
                 <VPImage
                   v-if="processedIcon(server)"
-                  :image="processedIcon(server)"
+              <VPImage
+                v-if="processedIcon(server) as icon"
+                :image="icon"
                   class="server-icon"
                   loading="lazy"
                 />
