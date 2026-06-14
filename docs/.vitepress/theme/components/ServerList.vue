@@ -169,7 +169,8 @@
               </div>
             </div>
 
-            <div v-if="descriptionLines(server).length" class="server-description">
+            <template v-if="descriptionLines(server).length > 0">
+              <div class="server-description">
               <span
                 v-for="(line, index) in descriptionLines(server)"
                 :key="index"
