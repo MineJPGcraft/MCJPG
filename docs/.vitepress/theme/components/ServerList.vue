@@ -32,40 +32,69 @@
     <template v-else>
       <!-- 搜索和筛选 -->
       <div class="filters">
-        <div class="search-wrapper">
-          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              fill="currentColor"
-              d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14"
+        <!-- 第一行：搜索 + 版本 -->
+        <div class="filters-row">
+          <div class="search-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14"
+              />
+            </svg>
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="搜索服务器名称或简介..."
+              class="search-input"
+              aria-label="搜索服务器"
             />
-          </svg>
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="搜索服务器名称或简介..."
-            class="search-input"
-            aria-label="搜索服务器"
-          />
-          <button
-            v-if="searchQuery"
-            class="search-clear"
-            aria-label="清空搜索"
-            @click="searchQuery = ''"
-          >
-            ×
-          </button>
+            <button
+              v-if="searchQuery"
+              class="search-clear"
+              aria-label="清空搜索"
+              @click="searchQuery = ''"
+            >
+              ×
+            </button>
+          </div>
+
+          <div class="select-wrapper">
+            <label class="custom-select">
+              <select v-model="selectedVersion" aria-label="筛选版本">
+                <option value="">所有版本</option>
+                <option v-for="version in serverVersions" :key="version" :value="version">
+                  {{ version }}
+                </option>
+              </select>
+              <svg class="select-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M7 10l5 5 5-5z" />
+              </svg>
+            </label>
+          </div>
         </div>
-        <div class="select-wrapper">
-          <select v-model="selectedType" class="filter-select" aria-label="筛选类型">
-            <option value="">所有类型</option>
-            <option v-for="type in serverTypes" :key="type" :value="type">{{ type }}</option>
-          </select>
-          <select v-model="selectedVersion" class="filter-select" aria-label="筛选版本">
-            <option value="">所有版本</option>
-            <option v-for="version in serverVersions" :key="version" :value="version">
-              {{ version }}
-            </option>
-          </select>
+
+        <!-- 第二行：类型快捷标签 -->
+        <div v-if="serverTypes.length" class="type-chips">
+          <button
+            class="chip"
+            :class="{ 'chip--active': selectedType === '' }"
+            @click="selectedType = ''"
+          >
+            全部类型
+          </button>
+          <button
+            v-for="type in serverTypes"
+            :key="type"
+            class="chip"
+            :class="{ 'chip--active': selectedType === type }"
+            @click="selectedType = selectedType === type ? '' : type"
+          >
+            {{ type }}
+          </button>
+
+          <button v-if="hasActiveFilter" class="chip chip--clear" @click="resetFilters">
+            ✕ 清除筛选
+          </button>
         </div>
       </div>
 
@@ -84,69 +113,136 @@
       </div>
 
       <!-- 服务器卡片列表 -->
-      <div v-else class="server-grid">
-        <a
-          v-for="server in filteredServers"
-          :key="server.id"
-          :href="server.link || undefined"
-          :target="server.link ? '_blank' : undefined"
-          rel="noopener noreferrer"
-          class="server-card"
-          :class="{ 'server-card--disabled': !server.link }"
-        >
-          <div class="card-content">
-            <div class="server-icon-wrapper">
-              <VPImage
-                v-if="processedIcon(server)"
-                :image="processedIcon(server)"
-                class="server-icon"
-                loading="lazy"
-              />
-              <span v-else class="server-icon-fallback">{{ initialOf(server.name) }}</span>
-            </div>
-            <div class="server-info">
-              <h3 class="server-name">{{ server.name || '未命名服务器' }}</h3>
-              <div class="server-tags">
-                <div class="tags-container">
-                  <span v-if="server.type" class="tag type-tag">{{ server.type }}</span>
-                  <span v-if="server.version" class="tag version-tag">{{ server.version }}</span>
-                  <template v-if="server.ip">
-                    <span
-                      class="tag status-tag"
-                      :class="statusOf(server.ip).online ? 'online' : 'offline'"
-                    >
-                      <i class="status-dot" :class="{ 'status-dot--pulse': statusOf(server.ip).online }"></i>
-                      {{ statusOf(server.ip).online ? '在线' : '离线' }}
-                    </span>
-                    <span
-                      v-if="statusOf(server.ip).online && statusOf(server.ip).delay != null"
-                      class="tag delay-tag"
-                      :class="getDelayClass(statusOf(server.ip).delay)"
-                    >
-                      {{ Math.round(statusOf(server.ip).delay) }}ms
-                    </span>
-                    <span v-if="statusOf(server.ip).online" class="tag players-tag">
-                      👥 {{ statusOf(server.ip).players.online }}/{{ statusOf(server.ip).players.max }}
-                    </span>
-                  </template>
+      <template v-else>
+        <div class="server-grid">
+          <a
+            v-for="server in paginatedServers"
+            :key="server.id"
+            :href="server.link || undefined"
+            :target="server.link ? '_blank' : undefined"
+            rel="noopener noreferrer"
+            class="server-card"
+            :class="{ 'server-card--disabled': !server.link }"
+          >
+            <div class="card-content">
+              <div class="server-icon-wrapper">
+                <VPImage
+                  v-if="processedIcon(server)"
+                  :image="processedIcon(server)"
+                  class="server-icon"
+                  loading="lazy"
+                />
+                <span v-else class="server-icon-fallback">{{ initialOf(server.name) }}</span>
+              </div>
+              <div class="server-info">
+                <h3 class="server-name">{{ server.name || '未命名服务器' }}</h3>
+                <div class="server-tags">
+                  <div class="tags-container">
+                    <span v-if="server.type" class="tag type-tag">{{ server.type }}</span>
+                    <span v-if="server.version" class="tag version-tag">{{ server.version }}</span>
+                    <template v-if="server.ip">
+                      <span
+                        class="tag status-tag"
+                        :class="statusOf(server.ip).online ? 'online' : 'offline'"
+                      >
+                        <i
+                          class="status-dot"
+                          :class="{ 'status-dot--pulse': statusOf(server.ip).online }"
+                        ></i>
+                        {{ statusOf(server.ip).online ? '在线' : '离线' }}
+                      </span>
+                      <span
+                        v-if="statusOf(server.ip).online && statusOf(server.ip).delay != null"
+                        class="tag delay-tag"
+                        :class="getDelayClass(statusOf(server.ip).delay)"
+                      >
+                        {{ Math.round(statusOf(server.ip).delay) }}ms
+                      </span>
+                      <span v-if="statusOf(server.ip).online" class="tag players-tag">
+                        👥 {{ statusOf(server.ip).players.online }}/{{ statusOf(server.ip).players.max }}
+                      </span>
+                    </template>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div v-if="descriptionLines(server).length" class="server-description">
+              <span
+                v-for="(line, index) in descriptionLines(server)"
+                :key="index"
+                class="desc-line"
+              >
+                {{ line }}
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- 分页器 -->
+        <div class="pagination">
+          <!-- 每页数量 -->
+          <div class="pagination__size">
+            <span>每页</span>
+            <select v-model.number="pageSize" class="page-size-select" aria-label="每页显示数量">
+              <option v-for="opt in pageSizeOptions" :key="opt" :value="opt">{{ opt }}</option>
+            </select>
+            <span>个</span>
           </div>
 
-          <div v-if="descriptionLines(server).length" class="server-description">
-            <span v-for="(line, index) in descriptionLines(server)" :key="index" class="desc-line">
-              {{ line }}
-            </span>
+          <!-- 页码导航 -->
+          <div v-if="totalPages > 1" class="pagination__nav">
+            <button class="page-btn" :disabled="currentPage === 1" @click="goToPage(currentPage - 1)">
+              ‹
+            </button>
+
+            <button
+              v-for="page in visiblePages"
+              :key="page.key"
+              class="page-btn"
+              :class="{
+                'page-btn--active': page.value === currentPage,
+                'page-btn--ellipsis': page.value == null,
+              }"
+              :disabled="page.value == null"
+              @click="page.value != null && goToPage(page.value)"
+            >
+              {{ page.label }}
+            </button>
+
+            <button
+              class="page-btn"
+              :disabled="currentPage === totalPages"
+              @click="goToPage(currentPage + 1)"
+            >
+              ›
+            </button>
           </div>
-        </a>
-      </div>
+
+          <!-- 跳转 -->
+          <div v-if="totalPages > 1" class="pagination__jump">
+            <span>跳至</span>
+            <input
+              v-model="jumpInput"
+              type="number"
+              min="1"
+              :max="totalPages"
+              class="jump-input"
+              aria-label="跳转到指定页"
+              @keyup.enter="handleJump"
+            />
+            <span>页</span>
+            <button class="page-btn jump-btn" @click="handleJump">确定</button>
+            <span class="pagination__total">共 {{ totalPages }} 页</span>
+          </div>
+        </div>
+      </template>
     </template>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { VPImage } from 'vitepress/theme'
 
 const props = defineProps({
@@ -166,6 +262,16 @@ const props = defineProps({
     type: Number,
     default: 10000,
   },
+  // 默认每页数量
+  defaultPageSize: {
+    type: Number,
+    default: 9,
+  },
+  // 可选的每页数量列表
+  pageSizeOptions: {
+    type: Array,
+    default: () => [3, 6, 9, 12, 15],
+  },
 })
 
 const searchQuery = ref('')
@@ -179,7 +285,7 @@ const serverVersions = ref([])
 const isLoading = ref(true)
 const loadError = ref(null)
 
-// 离线兜底状态，避免模板里反复判空
+// 离线兜底状态
 const OFFLINE_STATUS = Object.freeze({
   online: false,
   players: { online: 0, max: 0 },
@@ -188,10 +294,9 @@ const OFFLINE_STATUS = Object.freeze({
   version: '',
 })
 
-// 统一获取某个 ip 的状态（永远返回完整结构）
 const statusOf = (ip) => serverStatus.value[ip] || OFFLINE_STATUS
 
-// 处理图标数据：缺失/非法时返回 null，由模板降级为首字母
+// 处理图标：缺失/非法时返回 null，由模板降级为首字母
 const processedIcon = (server) => {
   if (!server) return null
   const icon = server.icon
@@ -210,17 +315,14 @@ const processedIcon = (server) => {
   return null
 }
 
-// 图标降级：取名称首字母
 const initialOf = (name) => (name ? String(name).trim().charAt(0).toUpperCase() : '?')
 
-// 安全拆分描述
 const descriptionLines = (server) => {
   const desc = server?.description
   if (typeof desc !== 'string' || !desc.trim()) return []
   return desc.split('\n').map((s) => s.trim()).filter(Boolean)
 }
 
-// 延迟等级
 const getDelayClass = (delay) => {
   if (delay == null) return 'medium'
   if (delay <= 100) return 'good'
@@ -239,7 +341,6 @@ const fetchWithTimeout = async (url, options = {}, timeout = props.requestTimeou
   }
 }
 
-// 检查单个服务器状态
 const checkServerStatus = async (ip) => {
   if (!ip) return
   try {
@@ -268,7 +369,7 @@ const checkServerStatus = async (ip) => {
   }
 }
 
-// 批量检查（控制并发，避免一次性打爆接口）
+// 批量检查（控制并发）
 const checkAllStatus = async () => {
   const ips = servers.value.map((s) => s?.ip).filter(Boolean)
   const CONCURRENCY = 5
@@ -278,7 +379,6 @@ const checkAllStatus = async () => {
   }
 }
 
-// 随机排序（Fisher–Yates）
 const shuffleServers = () => {
   const array = [...servers.value]
   for (let i = array.length - 1; i > 0; i--) {
@@ -288,7 +388,6 @@ const shuffleServers = () => {
   shuffledServers.value = array
 }
 
-// 过滤后的列表（全程判空）
 const filteredServers = computed(() => {
   const q = searchQuery.value.trim().toLowerCase()
   return shuffledServers.value.filter((server) => {
@@ -316,13 +415,75 @@ const resetFilters = () => {
   selectedVersion.value = ''
 }
 
-// 规范化服务器数据：确保 id 存在
+// ===== 分页 =====
+const pageSize = ref(props.defaultPageSize)
+const currentPage = ref(1)
+const jumpInput = ref('')
+
+const totalPages = computed(() => Math.max(1, Math.ceil(filteredServers.value.length / pageSize.value)))
+
+const paginatedServers = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value
+  return filteredServers.value.slice(start, start + pageSize.value)
+})
+
+const goToPage = (page) => {
+  const target = Math.min(Math.max(1, page), totalPages.value)
+  if (target === currentPage.value) return
+  currentPage.value = target
+  if (typeof window !== 'undefined') {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
+const handleJump = () => {
+  const n = parseInt(jumpInput.value, 10)
+  if (!Number.isNaN(n)) goToPage(n)
+  jumpInput.value = ''
+}
+
+// 智能页码：首页、末页、当前页±1，超出用省略号
+const visiblePages = computed(() => {
+  const total = totalPages.value
+  const cur = currentPage.value
+  const pages = []
+  const push = (value, label = value, key = `p-${value}`) => pages.push({ value, label, key })
+
+  if (total <= 7) {
+    for (let i = 1; i <= total; i++) push(i)
+    return pages
+  }
+
+  push(1)
+  if (cur > 3) push(null, '…', 'left-ellipsis')
+
+  const start = Math.max(2, cur - 1)
+  const end = Math.min(total - 1, cur + 1)
+  for (let i = start; i <= end; i++) push(i)
+
+  if (cur < total - 2) push(null, '…', 'right-ellipsis')
+  push(total)
+  return pages
+})
+
+// 搜索/筛选变化时回到第 1 页
+watch([searchQuery, selectedType, selectedVersion], () => {
+  currentPage.value = 1
+})
+// 每页数量变化时回到第 1 页
+watch(pageSize, () => {
+  currentPage.value = 1
+})
+// 总页数变化时校正当前页
+watch(totalPages, (tp) => {
+  if (currentPage.value > tp) currentPage.value = tp
+})
+
 const normalizeServers = (list) =>
   (Array.isArray(list) ? list : [])
     .filter((s) => s && typeof s === 'object')
     .map((s, idx) => ({ ...s, id: s.id ?? s.ip ?? s.name ?? `server-${idx}` }))
 
-// 获取服务器列表
 const fetchServerList = async () => {
   try {
     isLoading.value = true
@@ -343,6 +504,7 @@ const fetchServerList = async () => {
       : [...new Set(servers.value.map((s) => s.version).filter(Boolean))]
 
     shuffleServers()
+    currentPage.value = 1
     checkAllStatus()
   } catch (error) {
     console.error('获取服务器列表失败:', error)
@@ -428,11 +590,24 @@ onUnmounted(() => {
 .filters {
   display: flex;
   flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.filters-row {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
-  margin-bottom: 16px;
   width: 100%;
 }
 
+/* 搜索框 */
 .search-wrapper {
   position: relative;
   flex: 1;
@@ -449,17 +624,27 @@ onUnmounted(() => {
   height: 18px;
   color: var(--vp-c-text-3);
   pointer-events: none;
+  transition: color 0.25s;
+}
+
+.search-wrapper:focus-within .search-icon {
+  color: var(--vp-c-brand);
 }
 
 .search-input {
   width: 100%;
-  padding: 9px 36px 9px 38px;
+  padding: 10px 38px 10px 40px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   box-sizing: border-box;
+  font-size: 0.95em;
   transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.search-input::placeholder {
+  color: var(--vp-c-text-3);
 }
 
 .search-input:focus {
@@ -485,46 +670,118 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s, color 0.2s;
 }
 
 .search-clear:hover {
-  background: var(--vp-c-divider);
+  background: var(--vp-c-danger-soft, var(--vp-c-red-soft));
+  color: var(--vp-c-danger, var(--vp-c-red));
 }
 
+/* 自定义下拉框 */
 .select-wrapper {
   display: flex;
   gap: 8px;
-  flex-wrap: nowrap;
   width: 100%;
 }
 
-.filter-select {
-  padding: 9px 12px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
+.custom-select {
+  position: relative;
   flex: 1;
-  min-width: 120px;
-  box-sizing: border-box;
-  max-width: 100%;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  min-width: 140px;
+  display: block;
 }
 
-.filter-select:focus {
-  outline: none;
+.custom-select select {
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: 0.95em;
+  cursor: pointer;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.custom-select select:hover {
   border-color: var(--vp-c-brand);
 }
 
-.result-meta {
-  font-size: 0.85em;
-  color: var(--vp-c-text-3);
-  margin-bottom: 18px;
+.custom-select select:focus {
+  outline: none;
+  border-color: var(--vp-c-brand);
+  box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
 }
 
-.result-meta__online {
-  color: var(--vp-c-green);
+.select-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--vp-c-text-3);
+  pointer-events: none;
+  transition: color 0.25s;
+}
+
+.custom-select:focus-within .select-arrow {
+  color: var(--vp-c-brand);
+}
+
+/* 类型快捷标签 */
+.type-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.chip {
+  padding: 5px 14px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  font-size: 0.82em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
+}
+
+.chip--active {
+  background: var(--vp-c-brand);
+  border-color: var(--vp-c-brand);
+  color: #fff;
+}
+
+.chip--active:hover {
+  color: #fff;
+  opacity: 0.9;
+}
+
+.chip--clear {
+  margin-left: auto;
+  color: var(--vp-c-danger, var(--vp-c-red));
+  border-color: transparent;
+  background: transparent;
+}
+
+.chip--clear:hover {
+  background: var(--vp-c-danger-soft, var(--vp-c-red-soft));
+  border-color: transparent;
+  color: var(--vp-c-danger, var(--vp-c-red));
 }
 
 /* ===== 卡片网格 ===== */
@@ -623,25 +880,17 @@ onUnmounted(() => {
   white-space: nowrap;
 }
 
+/* 标签：自动换行，不再横向滚动 */
 .server-tags {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   width: 100%;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.server-tags::-webkit-scrollbar {
-  display: none;
 }
 
 .tags-container {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 4px;
-  min-height: 22px;
+  flex-wrap: wrap;
+  gap: 6px;
   align-items: center;
-  width: max-content;
+  width: 100%;
 }
 
 .tag {
@@ -793,20 +1042,131 @@ onUnmounted(() => {
   }
 }
 
+/* ===== 分页器 ===== */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  font-size: 0.85em;
+  color: var(--vp-c-text-2);
+}
+
+.pagination__size,
+.pagination__jump {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination__nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination__total {
+  color: var(--vp-c-text-3);
+  margin-left: 4px;
+}
+
+.page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled):not(.page-btn--ellipsis) {
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
+}
+
+.page-btn--active {
+  background: var(--vp-c-brand);
+  border-color: var(--vp-c-brand);
+  color: #fff;
+}
+
+.page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.page-btn--ellipsis {
+  border: none;
+  background: transparent;
+  cursor: default;
+  min-width: 24px;
+  padding: 0;
+}
+
+.jump-btn {
+  font-size: 0.85em;
+}
+
+.page-size-select {
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  cursor: pointer;
+}
+
+.jump-input {
+  width: 56px;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.jump-input:focus,
+.page-size-select:focus {
+  outline: none;
+  border-color: var(--vp-c-brand);
+}
+
+/* 去掉数字输入框的上下箭头 */
+.jump-input::-webkit-outer-spin-button,
+.jump-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.jump-input {
+  -moz-appearance: textfield;
+}
+
 /* ===== 响应式 ===== */
 @media (min-width: 640px) {
-  .filters {
+  .filters-row {
     flex-direction: row;
     align-items: center;
   }
 
   .search-wrapper {
+    flex: 1;
     max-width: 450px;
   }
 
   .select-wrapper {
-    flex: 1;
-    justify-content: flex-start;
+    flex: 0 0 auto;
+    width: auto;
   }
 }
 
@@ -838,16 +1198,29 @@ onUnmounted(() => {
     font-size: 0.75em;
   }
 
-  .select-wrapper {
-    flex-wrap: wrap;
+  .filters {
+    padding: 12px;
   }
-
-  .filter-select {
-    min-width: calc(50% - 4px);
+  .custom-select {
+    min-width: 0;
+  }
+  .chip {
+    padding: 4px 12px;
+    font-size: 0.78em;
   }
 
   .server-description {
     font-size: 0.85em;
+  }
+
+  .pagination {
+    gap: 12px;
+  }
+
+  .page-btn {
+    min-width: 30px;
+    height: 30px;
+    padding: 0 6px;
   }
 }
 </style>
