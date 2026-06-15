@@ -1,0 +1,27 @@
+:root {
+  --badge-img: url("/fable.png");
+  --badge-width: 200px;
+  --badge-height: 90px;
+  --badge-gap: 10px;
+  --badge-offset-y: 16px;
+}
+
+.VPNavBarTitle .title {
+  display: flex;
+  align-items: center;
+}
+
+.VPNavBarTitle .title::after {
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--badge-width);
+  height: var(--badge-height);
+  margin-left: var(--badge-gap);
+  position: relative;
+  top: var(--badge-offset-y);
+  background-image: var(--badge-img);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
