@@ -390,7 +390,7 @@ const checkServerStatus = async (ip) => {
 
 const checkAllStatus = async () => {
   const ips = servers.value.map((s) => s?.ip).filter(Boolean)
-  const CONCURRENCY = 5
+  const CONCURRENCY = 30
   for (let i = 0; i < ips.length; i += CONCURRENCY) {
     if (isUnmounted) return
     const batch = ips.slice(i, i + CONCURRENCY)
