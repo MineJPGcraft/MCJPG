@@ -256,6 +256,10 @@ const props = defineProps({
     type: String,
     default: 'https://serverlist.mcjpg.org/servers.json',
   },
+  fallbackApiUrls: {
+    type: Array,
+    default: () => ['https://serverlist.mcjpg.org/servers.json'],
+  },
   statusApiUrl: {
     type: String,
     default: 'https://serverstatus.mcjpg.org/',
@@ -532,37 +536,69 @@ const normalizeServers = (list) =>
     .filter((s) => s && typeof s === 'object')
     .map((s, idx) => ({ ...s, id: s.id ?? s.ip ?? s.name ?? `server-${idx}` }))
 
+// 从单个端点拉取并解析服务器列表，成功返回 data，失败抛错（交由上层决定是否回退）
+const fetchListFromEndpoint = async (url) => {
+  const response = await fetchWithTimeout(url)
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+  return response.json()
+}
+
+// 应用拉取到的数据到响应式状态
+const applyServerData = (data) => {
+  servers.value = normalizeServers(Array.isArray(data) ? data : data.servers)
+
+  serverTypes.value = Array.isArray(data.types)
+    ? data.types
+    : [...new Set(servers.value.map((s) => s.type).filter(Boolean))]
+
+  serverVersions.value = Array.isArray(data.versions)
+    ? data.versions
+    : [...new Set(servers.value.map((s) => s.version).filter(Boolean))]
+
+  shuffleServers()
+  currentPage.value = 1
+  checkAllStatus()
+}
+
 const fetchServerList = async () => {
-  try {
-    isLoading.value = true
-    loadError.value = null
+  // 主端点 + 备用端点，按顺序构成故障转移列表（去重 + 过滤空值）
+  const endpoints = [...new Set([props.apiUrl, ...(props.fallbackApiUrls || [])].filter(Boolean))]
 
-    const response = await fetchWithTimeout(props.apiUrl)
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+  isLoading.value = true
+  loadError.value = null
 
-    const data = await response.json()
+  let lastError = null
+
+  for (let i = 0; i < endpoints.length; i++) {
     if (isUnmounted) return
+    const url = endpoints[i]
+    try {
+      const data = await fetchListFromEndpoint(url)
+      if (isUnmounted) return
 
-    servers.value = normalizeServers(Array.isArray(data) ? data : data.servers)
+      applyServerData(data)
 
-    serverTypes.value = Array.isArray(data.types)
-      ? data.types
-      : [...new Set(servers.value.map((s) => s.type).filter(Boolean))]
-
-    serverVersions.value = Array.isArray(data.versions)
-      ? data.versions
-      : [...new Set(servers.value.map((s) => s.version).filter(Boolean))]
-
-    shuffleServers()
-    currentPage.value = 1
-    checkAllStatus()
-  } catch (error) {
-    if (isUnmounted) return
-    console.error('获取服务器列表失败:', error)
-    loadError.value = error.name === 'AbortError' ? '请求超时，请检查网络后重试' : error.message
-  } finally {
-    if (!isUnmounted) isLoading.value = false
+      // 成功：若用的是备用端点，给出提示（可选）
+      if (i > 0) {
+        console.warn(`主端点不可用，已回退至备用端点：${url}`)
+      }
+      if (!isUnmounted) isLoading.value = false
+      return
+    } catch (error) {
+      if (isUnmounted) return
+      lastError = error
+      console.error(`端点 ${url} 获取服务器列表失败:`, error)
+      // 还有下一个端点则继续尝试
+    }
   }
+
+  // 全部端点均失败
+  if (isUnmounted) return
+  loadError.value =
+    lastError?.name === 'AbortError'
+      ? '请求超时，请检查网络后重试'
+      : `所有端点均不可用：${lastError?.message || '未知错误'}`
+  isLoading.value = false
 }
 
 let pollTimer = null
