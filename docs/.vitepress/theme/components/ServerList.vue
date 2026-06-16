@@ -73,24 +73,32 @@
           </div>
         </div>
 
-        <!-- 第二行：类型快捷标签 -->
-        <div v-if="serverTypes.length" class="type-chips">
-          <button
-            class="chip"
-            :class="{ 'chip--active': selectedType === '' }"
-            @click="selectedType = ''"
-          >
-            全部类型
-          </button>
-          <button
-            v-for="type in serverTypes"
-            :key="type"
-            class="chip"
-            :class="{ 'chip--active': selectedType === type }"
-            @click="selectedType = selectedType === type ? '' : type"
-          >
-            {{ type }}
-          </button>
+        <!-- 第二行：类型快捷标签 + 只看在线 + 清除筛选 -->
+        <div class="filters-secondary">
+          <div v-if="serverTypes.length" class="type-chips">
+            <button
+              class="chip"
+              :class="{ 'chip--active': selectedType === '' }"
+              @click="selectedType = ''"
+            >
+              全部类型
+            </button>
+            <button
+              v-for="type in serverTypes"
+              :key="type"
+              class="chip"
+              :class="{ 'chip--active': selectedType === type }"
+              @click="selectedType = selectedType === type ? '' : type"
+            >
+              {{ type }}
+            </button>
+          </div>
+
+          <label class="online-toggle">
+            <input v-model="onlineOnly" type="checkbox" class="online-toggle__input" />
+            <span class="online-toggle__box" aria-hidden="true"></span>
+            <span class="online-toggle__label">只看在线</span>
+          </label>
 
           <button v-if="hasActiveFilter" class="chip chip--clear" @click="resetFilters">
             ✕ 清除筛选
@@ -266,13 +274,14 @@ const props = defineProps({
   },
   pageSizeOptions: {
     type: Array,
-    default: () => [6, 9, 12, 24, 48],
+    default: () => [3, 6, 9, 15, 30],
   },
 })
 
 const searchQuery = ref('')
 const selectedType = ref('')
 const selectedVersion = ref('')
+const onlineOnly = ref(false)
 const shuffledServers = ref([])
 const serverStatus = ref({})
 const servers = ref([])
@@ -394,17 +403,34 @@ const shuffleServers = () => {
   shuffledServers.value = array
 }
 
+const isServerOnline = (server) => Boolean(server?.ip && statusOf(server.ip).online)
+
 const filteredServers = computed(() => {
   const q = searchQuery.value.trim().toLowerCase()
-  return shuffledServers.value.filter((server) => {
+
+  // 1. 先筛选
+  const filtered = shuffledServers.value.filter((server) => {
     if (!server) return false
     const name = (server.name || '').toLowerCase()
     const desc = (server.description || '').toLowerCase()
     const matchesSearch = !q || name.includes(q) || desc.includes(q)
     const matchesType = !selectedType.value || server.type === selectedType.value
     const matchesVersion = !selectedVersion.value || server.version === selectedVersion.value
+
+    // 只看在线
+    if (onlineOnly.value && !isServerOnline(server)) return false
+
     return matchesSearch && matchesType && matchesVersion
   })
+
+  // 2. 在线优先排序（带索引稳定排序：组内保持原 shuffle 顺序，避免跨浏览器乱跳）
+  return filtered
+    .map((server, index) => ({ server, index }))
+    .sort((a, b) => {
+      const diff = Number(isServerOnline(b.server)) - Number(isServerOnline(a.server))
+      return diff !== 0 ? diff : a.index - b.index
+    })
+    .map((item) => item.server)
 })
 
 const onlineCount = computed(
@@ -412,13 +438,14 @@ const onlineCount = computed(
 )
 
 const hasActiveFilter = computed(
-  () => Boolean(searchQuery.value || selectedType.value || selectedVersion.value)
+  () => Boolean(searchQuery.value || selectedType.value || selectedVersion.value || onlineOnly.value)
 )
 
 const resetFilters = () => {
   searchQuery.value = ''
   selectedType.value = ''
   selectedVersion.value = ''
+  onlineOnly.value = false
 }
 
 // ===== 分页 =====
@@ -490,7 +517,7 @@ const visiblePages = computed(() => {
   return pages
 })
 
-watch([searchQuery, selectedType, selectedVersion], () => {
+watch([searchQuery, selectedType, selectedVersion, onlineOnly], () => {
   currentPage.value = 1
 })
 watch(pageSize, () => {
@@ -772,11 +799,21 @@ onUnmounted(() => {
   color: var(--vp-c-brand);
 }
 
+/* ===== 第二行筛选：类型标签 + 只看在线 + 清除 ===== */
+.filters-secondary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
 .type-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
+  /* 把后面的「只看在线 / 清除筛选」推到右侧，但它们的位置固定，不随类型数量抖动 */
+  margin-right: auto;
 }
 
 .chip {
@@ -809,7 +846,7 @@ onUnmounted(() => {
 }
 
 .chip--clear {
-  margin-left: auto;
+  flex-shrink: 0;
   color: var(--vp-c-danger, var(--vp-c-red));
   border-color: transparent;
   background: transparent;
@@ -819,6 +856,78 @@ onUnmounted(() => {
   background: var(--vp-c-danger-soft, var(--vp-c-red-soft));
   border-color: transparent;
   color: var(--vp-c-danger, var(--vp-c-red));
+}
+
+/* ===== 只看在线 勾选框（明暗模式兼容 + 位置固定不抖动）===== */
+.online-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 0.82em;
+  color: var(--vp-c-text-2);
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+/* 选中后整体高亮：绿色软背景 + 绿框 + 绿字，白天黑夜都能一眼看出已选 */
+.online-toggle:has(.online-toggle__input:checked) {
+  background: var(--vp-c-green-soft);
+  border-color: var(--vp-c-green);
+  color: var(--vp-c-green);
+}
+
+.online-toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.online-toggle__box {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--vp-c-text-3);
+  border-radius: 4px;
+  background: var(--vp-c-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.online-toggle__box::after {
+  content: '';
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.15s ease;
+}
+
+.online-toggle__input:checked + .online-toggle__box {
+  background: var(--vp-c-green);
+  border-color: var(--vp-c-green);
+}
+
+.online-toggle__input:checked + .online-toggle__box::after {
+  border-color: #02941a;
+  transform: rotate(45deg) scale(1);
+}
+
+.online-toggle__input:focus-visible + .online-toggle__box {
+  box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
+}
+
+.online-toggle:hover .online-toggle__box {
+  border-color: var(--vp-c-green);
 }
 
 .result-meta {
