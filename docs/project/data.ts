@@ -45,10 +45,22 @@ export const NAV_DATA: NavData[] = [
         link: 'https://askai.mcjpg.org/',
       },
       {
+        icon: '/logo.png',
+        title: 'ServerEditor',
+        desc: '快速编辑成员服服务器列表',
+        link: 'https://server-editor.mcjpg.dev/',
+      },
+      {
+        icon: '/logo.png',
+        title: 'Devop Platform',
+        desc: '获取免费的二级域名和社区通行证登录接入',
+        link: 'https://dash.mcjpg.dev/',
+      },
+      {
         icon: '/logo_AI.png',
         title: 'Charity API',
         desc: '我们的公益大模型API站点',
-        link: 'https://charity-api.mcjpg.org/',
+        link: 'https://charity-api.mcjpg.dev/',
       },
       {
         icon: '/icons/project/Openlist.svg',
