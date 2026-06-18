@@ -4,7 +4,7 @@
     <!-- 加载状态：骨架屏 -->
     <div v-if="isLoading" class="server-grid">
       <div v-for="n in 6" :key="n" class="server-card skeleton-card">
-        <div class="card-content">
+        <div class="card-header">
           <div class="server-icon-wrapper skeleton-block"></div>
           <div class="server-info">
             <div class="skeleton-line skeleton-line--title"></div>
@@ -14,9 +14,8 @@
               <span class="skeleton-line skeleton-line--tag"></span>
             </div>
           </div>
+          <div class="skeleton-line skeleton-line--arrow"></div>
         </div>
-        <div class="skeleton-line skeleton-line--desc"></div>
-        <div class="skeleton-line skeleton-line--desc skeleton-line--short"></div>
       </div>
     </div>
 
@@ -123,16 +122,23 @@
       <!-- 服务器卡片列表 -->
       <template v-else>
         <div ref="gridRef" class="server-grid">
-          <a
+          <div
             v-for="item in paginatedServers"
             :key="item.id"
-            :href="item.link || undefined"
-            :target="item.link ? '_blank' : undefined"
-            rel="noopener noreferrer"
             class="server-card"
-            :class="{ 'server-card--disabled': !item.link }"
+            :class="{
+              'server-card--expanded': isExpanded(item.id),
+              'server-card--static': !item.hasDetails,
+            }"
           >
-            <div class="card-content">
+            <!-- 头部：始终可见，点击展开 -->
+            <button
+              type="button"
+              class="card-header"
+              :disabled="!item.hasDetails"
+              :aria-expanded="item.hasDetails ? isExpanded(item.id) : undefined"
+              @click="item.hasDetails && toggleExpand(item.id)"
+            >
               <div class="server-icon-wrapper">
                 <VPImage
                   v-if="item.icon"
@@ -142,6 +148,7 @@
                 />
                 <span v-else class="server-icon-fallback">{{ item.initial }}</span>
               </div>
+
               <div class="server-info">
                 <h3 class="server-name">{{ item.name }}</h3>
                 <div class="server-tags">
@@ -149,7 +156,10 @@
                     <span v-if="item.type" class="tag type-tag">{{ item.type }}</span>
                     <span v-if="item.version" class="tag version-tag">{{ item.version }}</span>
                     <template v-if="item.ip">
-                      <span class="tag status-tag" :class="item.status.online ? 'online' : 'offline'">
+                      <span
+                        class="tag status-tag"
+                        :class="item.status.online ? 'online' : 'offline'"
+                      >
                         <i
                           class="status-dot"
                           :class="{ 'status-dot--pulse': item.status.online }"
@@ -170,14 +180,78 @@
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div v-if="item.descLines.length" class="server-description">
-              <span v-for="(line, index) in item.descLines" :key="index" class="desc-line">
-                {{ line }}
-              </span>
+              <svg
+                v-if="item.hasDetails"
+                class="expand-arrow"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+              </svg>
+            </button>
+
+            <!-- 展开区 -->
+            <div class="card-expand" :class="{ 'card-expand--open': isExpanded(item.id) }">
+              <div class="card-expand__inner">
+                <div class="card-expand__content">
+                  <div v-if="item.descLines.length" class="server-description">
+                    <span
+                      v-for="(line, index) in item.descLines"
+                      :key="index"
+                      class="desc-line"
+                    >
+                      {{ line }}
+                    </span>
+                  </div>
+
+                  <!-- 图片画廊：横向滚动，失败图片自动剔除 -->
+                  <div v-if="hasVisiblePic(item)" class="gallery">
+                    <template v-for="pic in item.pictures" :key="pic">
+                      <div v-if="!isPicFailed(pic)" class="gallery-item">
+                        <img
+                          :src="pic"
+                          :alt="`${item.name} 截图`"
+                          loading="lazy"
+                          class="gallery-img"
+                          @error="markPicFailed(pic)"
+                        />
+                      </div>
+                    </template>
+                  </div>
+
+                  <div v-if="item.ip" class="server-ip-row">
+                    <span class="ip-label">地址</span>
+                    <code class="ip-value">{{ item.ip }}</code>
+                    <button
+                      type="button"
+                      class="copy-btn"
+                      :class="{ 'copy-btn--copied': copiedIp === item.ip }"
+                      @click="copyIp(item.ip)"
+                    >
+                      {{ copiedIp === item.ip ? '✓ 已复制' : '复制' }}
+                    </button>
+                  </div>
+
+                  <a
+                    v-if="item.link"
+                    :href="item.link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="visit-btn"
+                  >
+                    访问服务器
+                    <svg class="visit-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill="currentColor"
+                        d="M14 5v2h3.59l-9.83 9.83 1.41 1.41L19 8.41V12h2V5z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
-          </a>
+          </div>
         </div>
 
         <!-- 分页器 -->
@@ -250,11 +324,12 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { VPImage } from 'vitepress/theme'
+import mediumZoom from 'medium-zoom'
 
 const props = defineProps({
   apiUrl: {
     type: String,
-    default: 'https://serverlist.mcjpg.org/servers.json',
+    default: 'https://server-editor.mcjpg.dev/api/getjson',
   },
   fallbackApiUrls: {
     type: Array,
@@ -294,6 +369,61 @@ const serverVersions = ref([])
 const isLoading = ref(true)
 const loadError = ref(null)
 const gridRef = ref(null)
+
+// 展开状态
+const expandedIds = ref(new Set())
+const isExpanded = (id) => expandedIds.value.has(id)
+const toggleExpand = (id) => {
+  const next = new Set(expandedIds.value)
+  if (next.has(id)) next.delete(id)
+  else next.add(id)
+  expandedIds.value = next
+}
+
+// 复制 IP
+const copiedIp = ref('')
+let copyTimer = null
+const copyIp = async (ip) => {
+  if (!ip) return
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(ip)
+    } else {
+      const ta = document.createElement('textarea')
+      ta.value = ip
+      ta.style.position = 'fixed'
+      ta.style.opacity = '0'
+      document.body.appendChild(ta)
+      ta.select()
+      document.execCommand('copy')
+      document.body.removeChild(ta)
+    }
+    copiedIp.value = ip
+    clearTimeout(copyTimer)
+    copyTimer = setTimeout(() => {
+      copiedIp.value = ''
+    }, 1600)
+  } catch (e) {
+    console.error('复制失败:', e)
+  }
+}
+
+// 图片画廊
+const failedPics = ref(new Set())
+const isPicFailed = (url) => failedPics.value.has(url)
+const markPicFailed = (url) => {
+  if (!url || failedPics.value.has(url)) return
+  const next = new Set(failedPics.value)
+  next.add(url)
+  failedPics.value = next
+}
+const hasVisiblePic = (item) =>
+  Array.isArray(item.pictures) &&
+  item.pictures.length > 0 &&
+  item.pictures.some((p) => !failedPics.value.has(p))
+
+// Medium Zoom 图片放大
+let zoomInstance = null
 
 // 卸载标志 + 请求中止控制器集合
 let isUnmounted = false
@@ -335,6 +465,15 @@ const descriptionLines = (server) => {
   const desc = server?.description
   if (typeof desc !== 'string' || !desc.trim()) return []
   return desc.split('\n').map((s) => s.trim()).filter(Boolean)
+}
+
+// 解析 picture 字段：兼容数组 / 空值，过滤非字符串
+const pictureListOf = (server) => {
+  const raw = server?.picture
+  if (!Array.isArray(raw)) return []
+  return raw
+    .filter((p) => typeof p === 'string' && p.trim())
+    .map((p) => p.trim())
 }
 
 const getDelayClass = (delay) => {
@@ -459,21 +598,28 @@ const jumpInput = ref('')
 
 const totalPages = computed(() => Math.max(1, Math.ceil(filteredServers.value.length / pageSize.value)))
 
-// 预计算当前页数据：图标 / 状态 / 描述行 一次性算好，模板直接读
+// 预计算当前页数据：图标 / 状态 / 描述行 / 图片 一次性算好，模板直接读，够快
 const paginatedServers = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value
-  return filteredServers.value.slice(start, start + pageSize.value).map((server) => ({
-    id: server.id,
-    name: server.name || '未命名服务器',
-    link: server.link || '',
-    ip: server.ip || '',
-    type: server.type || '',
-    version: server.version || '',
-    icon: processedIcon(server),
-    initial: initialOf(server.name),
-    descLines: descriptionLines(server),
-    status: server.ip ? statusOf(server.ip) : OFFLINE_STATUS,
-  }))
+  return filteredServers.value.slice(start, start + pageSize.value).map((server) => {
+    const descLines = descriptionLines(server)
+    const pictures = pictureListOf(server)
+    return {
+      id: server.id,
+      name: server.name || '未命名服务器',
+      link: server.link || '',
+      ip: server.ip || '',
+      type: server.type || '',
+      version: server.version || '',
+      icon: processedIcon(server),
+      initial: initialOf(server.name),
+      descLines,
+      pictures,
+      status: server.ip ? statusOf(server.ip) : OFFLINE_STATUS,
+      // 是否存在可展开内容（描述 / 图片 / IP / 链接），没有就不看了
+      hasDetails: Boolean(descLines.length || pictures.length || server.ip || server.link),
+    }
+  })
 })
 
 // 翻页后滚动到列表顶部（而非页面顶部），移动端体验更好
@@ -531,6 +677,20 @@ watch(totalPages, (tp) => {
   if (currentPage.value > tp) currentPage.value = tp
 })
 
+// 翻页前清理旧的 zoom 绑定，避免内存泄漏
+watch(paginatedServers, () => {
+  if (zoomInstance) {
+    zoomInstance.detach()
+  }
+}, { flush: 'pre' })
+
+// DOM 更新后（翻页或展开）重新绑定当前可见的图片
+watch([paginatedServers, expandedIds], () => {
+  if (zoomInstance) {
+    zoomInstance.attach('.gallery-img')
+  }
+}, { flush: 'post' })
+
 const normalizeServers = (list) =>
   (Array.isArray(list) ? list : [])
     .filter((s) => s && typeof s === 'object')
@@ -557,6 +717,8 @@ const applyServerData = (data) => {
 
   shuffleServers()
   currentPage.value = 1
+  expandedIds.value = new Set() // 数据刷新时收起所有卡片
+  failedPics.value = new Set() // 数据刷新时清空图片失败记录
   checkAllStatus()
 }
 
@@ -604,6 +766,11 @@ const fetchServerList = async () => {
 let pollTimer = null
 
 onMounted(async () => {
+  // 初始化 medium-zoom
+  zoomInstance = mediumZoom({
+    background: 'var(--vp-c-bg)'
+  })
+
   await fetchServerList()
   pollTimer = setInterval(() => {
     if (!isUnmounted && servers.value.length) checkAllStatus()
@@ -613,6 +780,12 @@ onMounted(async () => {
 onUnmounted(() => {
   isUnmounted = true
   if (pollTimer) clearInterval(pollTimer)
+  clearTimeout(copyTimer)
+  // 清理 zoom 实例
+  if (zoomInstance) {
+    zoomInstance.detach()
+    zoomInstance = null
+  }
   // 中止所有进行中的请求
   activeControllers.forEach((c) => c.abort())
   activeControllers.clear()
@@ -848,7 +1021,6 @@ onUnmounted(() => {
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
-  /* 把后面的「只看在线 / 清除筛选」推到右侧，但它们的位置固定，不随类型数量抖动 */
   margin-right: auto;
 }
 
@@ -894,7 +1066,7 @@ onUnmounted(() => {
   color: var(--vp-c-danger, var(--vp-c-red));
 }
 
-/* ===== 只看在线 勾选框（明暗模式兼容 + 位置固定不抖动）===== */
+/* ===== 只看在线 勾选框 ===== */
 .online-toggle {
   display: inline-flex;
   align-items: center;
@@ -911,7 +1083,6 @@ onUnmounted(() => {
   transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
-/* 选中后整体高亮：绿色软背景 + 绿框 + 绿字，白天黑夜都能一眼看出已选 */
 .online-toggle:has(.online-toggle__input:checked) {
   background: var(--vp-c-green-soft);
   border-color: var(--vp-c-green);
@@ -985,50 +1156,79 @@ onUnmounted(() => {
   max-width: 1200px;
   width: 100%;
   scroll-margin-top: 64px;
+  align-items: start; /* 展开时不撑高同行其他卡片 */
 }
 
 .server-card {
   width: 100%;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 16px;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border-radius: 14px;
   background: var(--vp-c-bg);
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .server-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   border-color: var(--vp-c-brand);
 }
 
-.server-card--disabled {
-  cursor: default;
+.server-card--expanded {
+  border-color: var(--vp-c-brand);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-.server-card--disabled:hover {
-  transform: none;
-  border-color: var(--vp-c-divider);
-}
-
-.card-content {
+/* ===== 卡片头部（可点击展开） ===== */
+.card-header {
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: 14px;
   width: 100%;
-  overflow: hidden;
+  padding: 16px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background 0.2s ease;
+}
+
+.card-header:hover:not(:disabled) {
+  background: var(--vp-c-bg-soft);
+}
+
+.card-header:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.card-header:focus-visible {
+  outline: 2px solid var(--vp-c-brand);
+  outline-offset: -2px;
+}
+
+.expand-arrow {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--vp-c-text-3);
+  transition: transform 0.3s ease, color 0.25s ease;
+}
+
+.server-card--expanded .expand-arrow {
+  transform: rotate(180deg);
+  color: var(--vp-c-brand);
 }
 
 .server-icon-wrapper {
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 10px;
   overflow: hidden;
   background-color: var(--vp-c-bg-soft);
@@ -1049,7 +1249,7 @@ onUnmounted(() => {
 }
 
 .server-icon-fallback {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--vp-c-brand);
 }
@@ -1057,7 +1257,6 @@ onUnmounted(() => {
 .server-info {
   flex: 1;
   min-width: 0;
-  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1066,7 +1265,7 @@ onUnmounted(() => {
 
 .server-name {
   margin: 0;
-  font-size: 1.2em;
+  font-size: 1.15em;
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1110,7 +1309,6 @@ onUnmounted(() => {
 .status-tag.online {
   background-color: var(--vp-c-green-soft);
   color: var(--vp-c-green);
-  /* 给脉冲动画提供跟随主题的颜色 */
   --pulse-color: var(--vp-c-green);
 }
 
@@ -1163,13 +1361,37 @@ onUnmounted(() => {
   color: var(--vp-c-text-2);
 }
 
+/* 展开区*/
+.card-expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s ease;
+}
+
+.card-expand--open {
+  grid-template-rows: 1fr;
+}
+
+.card-expand__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.card-expand__content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px 16px 16px;
+  border-top: 1px dashed var(--vp-c-divider);
+}
+
 .server-description {
   margin: 0;
   font-size: 0.9em;
   color: var(--vp-c-text-2);
   overflow-wrap: break-word;
   word-break: break-word;
-  line-height: 1.5;
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -1177,6 +1399,147 @@ onUnmounted(() => {
 
 .desc-line {
   display: block;
+}
+
+/* 图片画廊：横向滚动 */
+.gallery {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 2px 8px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  /* 隐藏 Firefox 滚动条间距带来的抖动 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--vp-c-divider) transparent;
+}
+
+.gallery::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gallery::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+  border-radius: 3px;
+}
+
+.gallery::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-text-3);
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.gallery-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in; /* 提示可点击放大 */
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.04);
+}
+
+/* IP 地址 + 复制 */
+.server-ip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ip-label {
+  font-size: 0.78em;
+  font-weight: 600;
+  color: var(--vp-c-text-3);
+  flex-shrink: 0;
+}
+
+.ip-value {
+  flex: 1 1 140px;
+  min-width: 0;
+  padding: 6px 10px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  font-family: var(--vp-font-family-mono, monospace);
+  font-size: 0.82em;
+  color: var(--vp-c-text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  font-size: 0.8em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
+}
+
+.copy-btn--copied {
+  background: var(--vp-c-green-soft);
+  border-color: var(--vp-c-green);
+  color: var(--vp-c-green);
+}
+
+/* 访问按钮*/
+.visit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--vp-c-brand);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.visit-btn:hover {
+  opacity: 0.9;
+}
+
+.visit-btn:active {
+  transform: scale(0.98);
+}
+
+.visit-btn__icon {
+  width: 16px;
+  height: 16px;
 }
 
 /* ===== 骨架屏 ===== */
@@ -1213,12 +1576,11 @@ onUnmounted(() => {
   border-radius: 6px;
 }
 
-.skeleton-line--desc {
-  margin-top: 4px;
-}
-
-.skeleton-line--short {
-  width: 70%;
+.skeleton-line--arrow {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 6px;
 }
 
 .skeleton-tags {
@@ -1380,11 +1742,24 @@ onUnmounted(() => {
     margin: 0;
     min-width: unset;
     max-width: 100%;
-    padding: 12px;
   }
 
-  .card-content {
+  .card-header {
+    padding: 12px;
     gap: 12px;
+  }
+
+  .server-icon-wrapper {
+    width: 52px;
+    height: 52px;
+  }
+
+  .server-icon-fallback {
+    font-size: 22px;
+  }
+
+  .server-name {
+    font-size: 1.05em;
   }
 
   .tag {
@@ -1392,8 +1767,32 @@ onUnmounted(() => {
     font-size: 0.75em;
   }
 
+  .card-expand__content {
+    padding: 12px 12px 14px;
+    gap: 12px;
+  }
+
   .server-description {
     font-size: 0.85em;
+  }
+
+  /* 移动端：画廊图片略小，更易横向滑动浏览 */
+  .gallery {
+    gap: 6px;
+    /* 让画廊在卡片内横向溢出，贴边滚动 */
+    margin: 0 -12px;
+    padding: 2px 12px 8px;
+  }
+
+  .gallery-item {
+    width: 150px;
+    height: 100px;
+  }
+
+  /* 移动端：访问按钮整行铺满，更易点击 */
+  .visit-btn {
+    align-self: stretch;
+    padding: 11px 18px;
   }
 
   .pagination {
