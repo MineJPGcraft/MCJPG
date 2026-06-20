@@ -74,11 +74,11 @@ export const NAV_DATA: NavData[] = [
         link: 'https://klpbbs.com/',
       },
       {
-        //icon: 'https://www.himcbbs.com/favicon.ico',
-        icon: '/icons/nav/非官方论坛/HiMCBBS.png',
-        title: 'HiMCBBS',
-        desc: '国内的我的世界中文论坛，主营Java版',
-        link: 'https://www.himcbbs.com/',
+        //icon: 'https://www.minebbs.com/favicon.ico',
+        icon: '/icons/nav/非官方论坛/MineBBS.png',
+        title: 'MineBBS',
+        desc: '一个国内的我的世界中文论坛，主营基岩版',
+        link: 'https://www.minebbs.com/',
       },
       {
         icon: '/icons/nav/非官方论坛/小僵尸论坛.png',
@@ -92,14 +92,7 @@ export const NAV_DATA: NavData[] = [
         title: 'Bangbang93论坛',
         desc: '十分著名的下载源国内镜像站——BMCLAPI',
         link: 'https://www.bangbang93.com',
-      },
-      {
-        //icon: 'https://mcobs.fun/static/MCOBS1.png',
-        icon: '/icons/nav/非官方论坛/mcobs.png',
-        title: '黑曜石论坛',
-        desc: '一个国内新兴的论坛，主营java版',
-        link: 'https://mcobs.cn/',
-      },
+      }
     ],
   },
   {
