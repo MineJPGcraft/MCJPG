@@ -30,7 +30,7 @@ export const NAV_DATA: NavData[] = [
         icon: '/icons/project/casdoor.png',
         title: 'MCJPG令牌',
         desc: 'MCJPG統一之身份管理系統',
-        link: 'https://sso.mcjpg.org/login/mcjpg/',
+        link: 'https://sso.mcjpg.org/login/MCJPG/',
       },
       {
         icon: '/icons/project/google-color.svg',
