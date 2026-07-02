@@ -25,6 +25,7 @@ export const sidebar = {
             collapsed: false,
             items: [
                 {text: '2024-November', link: '2024-11月刊/'},
+                {text: '2026-June', link: '2026-06月刊/'},
             ]
           },
         ]
