@@ -89,6 +89,17 @@ export const NAV_DATA: NavData[] = [
     ],
   },
   {
+    title: 'Merchandise',
+    items: [
+      {
+        icon: '/Sticker.png',
+        title: 'Sticker Pack',
+        desc: 'Original Golden Apple mascot emoji pack',
+        link: 'https://sticker.mcjpg.org/',
+      },
+    ],
+  },
+  {
     title: 'MC Mods',
     items: [
       {

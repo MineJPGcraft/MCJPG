@@ -89,6 +89,17 @@ export const NAV_DATA: NavData[] = [
     ],
   },
   {
+    title: '周邊',
+    items: [
+      {
+        icon: '/Sticker.png',
+        title: 'Sticker Pack',
+        desc: '原創金蘋果看板娘之表情包',
+        link: 'https://sticker.mcjpg.org/',
+      },
+    ],
+  },
+  {
     title: 'MC模組',
     items: [
       {
