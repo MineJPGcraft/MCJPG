@@ -19,7 +19,7 @@ const TOKEN = import.meta.env.VITE_DIFY_API_KEY || ''
 const BASE_URL = import.meta.env.VITE_DIFY_BASE_URL || 'https://dify.mcjpg.org'
 const BOT_NAME = 'MCJPG 助手'
 const WELCOME =
-  '你好！我是 MCJPG 智能助手 🤖\n你可以问我关于 MCJPG 组织、服务器、规章制度等任何问题~'
+  '你好！我是 MCJPG 小助手 🤖\n你可以问我关于 MCJPG 组织、服务器、规章制度等任何问题~'
 
 /** 检查 API Key 是否已配置 */
 const isConfigured = !!TOKEN
@@ -287,6 +287,11 @@ const isTyping = computed(() => {
           </svg>
         </button>
       </footer>
+
+      <!-- AI 免责提示 -->
+      <div class="chatbot-disclaimer">
+        ⚠️ AI 生成内容仅供参考，请注意甄别，重要信息请以官方公告为准。
+      </div>
     </div>
   </Transition>
 </template>
@@ -731,6 +736,19 @@ const isTyping = computed(() => {
 
 .chatbot-send-btn.stop:hover {
   background: #ff7875;
+}
+
+/* ── AI 免责提示 ────────────────────────────────── */
+.chatbot-disclaimer {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  font-size: 11px;
+  color: var(--chat-text-3);
+  text-align: center;
+  background: var(--chat-bg-soft);
+  border-top: 1px solid var(--chat-border);
+  line-height: 1.4;
+  user-select: none;
 }
 
 /* ── Markdown 样式 ──────────────────────────────── */
