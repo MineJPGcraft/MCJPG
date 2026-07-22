@@ -74,8 +74,8 @@ export default defineConfig({
     search: {
       provider: 'algolia',
       options: {
-        appId: 'VTCVHVPS1J',
-        apiKey: 'c3e9345ef8310ece1bb44e178fe36dbd',
+        appId: import.meta.env.VITE_ALGOLIA_APP_ID,
+        apiKey: import.meta.env.VITE_ALGOLIA_API_KEY,
         indexName: 'mcjpg',
         locales: {
           ...zhSearch,
@@ -91,6 +91,8 @@ export default defineConfig({
   },
 
   vite: {
+    // 从项目根目录读取 .env 环境变量
+    envDir: '../',
     plugins: [MarkdownPreview()],
     css: {
       preprocessorOptions: {
