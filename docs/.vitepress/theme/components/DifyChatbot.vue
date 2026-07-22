@@ -696,6 +696,9 @@ const isTyping = computed(() => {
 
 .chatbot-input::placeholder {
   color: var(--chat-text-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chatbot-send-btn {
