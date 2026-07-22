@@ -1,5 +1,6 @@
-import { basename } from 'node:path'
+import { basename, resolve } from 'node:path'
 import { defineConfig } from 'vitepress'
+import { loadEnv } from 'vite'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
 import { zh_CN } from './configs/zh_CN'
 import { en_US } from './configs/i18n/en_US/en_US'
@@ -10,6 +11,9 @@ import { search as lzhSearch } from './configs/i18n/zh-classical/zh_classical'
 import { head , socialLinks } from './configs'
 
 const APP_BASE_PATH = basename(process.env.GITHUB_REPOSITORY || '')
+
+// 在 Node 端加载 .env 环境变量
+const env = loadEnv('', resolve(__dirname, '../..'), '')
 
 export default defineConfig({
   outDir: '../dist',
@@ -74,8 +78,8 @@ export default defineConfig({
     search: {
       provider: 'algolia',
       options: {
-        appId: import.meta.env.VITE_ALGOLIA_APP_ID,
-        apiKey: import.meta.env.VITE_ALGOLIA_API_KEY,
+        appId: env.VITE_ALGOLIA_APP_ID,
+        apiKey: env.VITE_ALGOLIA_API_KEY,
         indexName: 'mcjpg',
         locales: {
           ...zhSearch,
