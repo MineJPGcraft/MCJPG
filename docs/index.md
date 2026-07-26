@@ -18,9 +18,8 @@ hero:
     - theme: sponsor
       text: 组织专栏
       link: /press/
-    - theme: sponsor
-      text: MCFlare社区
-      link: https://www.mcflare.com
+    - text: 前往活动专刊
+      link: /anniversary/
 
 
 ---
