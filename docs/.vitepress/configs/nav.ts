@@ -10,7 +10,6 @@ export const nav: DefaultTheme.Config['nav'] = [
   },
   { text: "组织专栏", link: '/press/' },
   { text: "MC导航", link: '/nav/' },
-  { text: "活动专刊", link: '/anniversary/' },
   {
     text: "友情链接",
               items: [
