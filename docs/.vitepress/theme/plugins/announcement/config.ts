@@ -25,8 +25,8 @@ export interface AnnouncementConfig {
 export const announcements: AnnouncementConfig[] = [
   {
     id: 'welcome',
-    title: '我们2周年了🎉',
-    content: '点击"活动专刊"了解更多周年庆活动详情！',
+    title: '欢迎来到 MCJPG',
+    content: '🎉 欢迎来到 MCJPG 官网！',
     type: 'info',
     priority: 100,
     showIcon: true,
