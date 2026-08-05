@@ -125,6 +125,12 @@ export const NAV_DATA: NavData[] = [
     title: '机器人插件',
     items: [
       {
+        icon: '/unibot.svg',
+        title: 'UniBot',
+        desc: '新一代群服互通',
+        link: 'https://bot.mcjpg.dev/',
+      },
+      {
         icon: '/icons/project/bot.jpg',
         title: 'MCTool',
         desc: '实现群服互通（账号绑定、死亡记录查询）',

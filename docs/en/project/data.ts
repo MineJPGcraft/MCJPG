@@ -125,6 +125,12 @@ export const NAV_DATA: NavData[] = [
     title: 'Bot Plugins',
     items: [
       {
+        icon: '/unibot.svg',
+        title: 'UniBot',
+        desc: 'A new generation of group-server interconnection bot',
+        link: 'https://bot.mcjpg.dev/',
+      },
+      {
         icon: '/icons/project/bot.jpg',
         title: 'MCTool',
         desc: 'Connect QQ group and your server',
