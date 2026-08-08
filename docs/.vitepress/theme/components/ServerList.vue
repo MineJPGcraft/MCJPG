@@ -337,7 +337,7 @@ const props = defineProps({
   },
   statusApiUrl: {
     type: String,
-    default: 'https://serverstatus.mcjpg.org/',
+    default: 'https://serverstatusapi.mcjpg.org/',
   },
   pollInterval: {
     type: Number,
