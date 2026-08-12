@@ -57,6 +57,12 @@ export const NAV_DATA: NavData[] = [
         link: 'https://dash.mcjpg.dev/',
       },
       {
+        icon: '/logo.png',
+        title: 'Mirror',
+        desc: '自營之Docker鏡像服務',
+        link: 'https://mirror.mcjpg.dev/',
+      },
+      {
         icon: '/logo_AI.png',
         title: 'Charity API',
         desc: '吾輩公益之大模型API站',
@@ -79,6 +85,12 @@ export const NAV_DATA: NavData[] = [
         title: '圖床',
         desc: '可速示畫與他人',
         link: 'https://image.mcjpg.org/',
+      },
+      {
+        icon: '/logo.png',
+        title: 'ServerStatusAPI',
+        desc: '分佈式之MC伺服器狀態勘察系統',
+        link: 'https://github.com/MineJPGcraft/ServerStatusAPI',
       },
       {
         icon: '/icons/project/editor.svg',
