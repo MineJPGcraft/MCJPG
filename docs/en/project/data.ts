@@ -57,6 +57,12 @@ export const NAV_DATA: NavData[] = [
         link: 'https://dash.mcjpg.dev/',
       },
       {
+        icon: '/logo.png',
+        title: 'Mirror',
+        desc: 'Self-hosted Docker image service',
+        link: 'https://mirror.mcjpg.dev/',
+      },
+      {
         icon: '/logo_AI.png',
         title: 'Charity API',
         desc: 'Our public welfare large model API site',
@@ -79,6 +85,12 @@ export const NAV_DATA: NavData[] = [
         title: 'Community Image Hosting',
         desc: 'Quickly share images',
         link: 'https://image.mcjpg.org/',
+      },
+      {
+        icon: '/logo.png',
+        title: 'ServerStatusAPI',
+        desc: 'Distributed Minecraft server status monitoring',
+        link: 'https://github.com/MineJPGcraft/ServerStatusAPI',
       },
       {
         icon: '/icons/project/editor.svg',
