@@ -15,6 +15,7 @@ export const nav: DefaultTheme.Config['nav'] = [
               items: [
                 { text: "鈴序科技", link: "https://lynseq.com" },
                 { text: "MCFlare", link: "https://www.mcflare.com" },
+                { text: "PUEH工作室", link: "https://nav.pueh.cn" },
                 { text: "HuggingAI", link: "https://huggingai.org" },
                 { text: "MSCPO", link: "https://mscpo.com/" },
                 { text: "隨風的個人網站", link: "https://zhuyuxuan.link/" },
