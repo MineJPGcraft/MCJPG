@@ -130,6 +130,11 @@ function updateHomePageStyle(value: boolean) {
 
 const playlist = [
   {
+    name: 'Tiny Fate',
+    author: 'Capchii',
+    file: '/music/Tiny Fate.mp3',
+  },
+  {
     name: '天天天国地獄国',
     author: 'ななひら & P丸様。',
     file: '/music/天天天国地獄国.mp3',
