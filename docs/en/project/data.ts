@@ -82,9 +82,9 @@ export const NAV_DATA: NavData[] = [
       },
       {
         icon: '/icons/project/imghub.png',
-        title: 'Community Image Hosting',
-        desc: 'Quickly share images',
-        link: 'https://image.mcjpg.org/',
+        title: 'ImgBed',
+        desc: 'Community image hosting for quickly sharing images',
+        link: 'https://imgbed.mcjpg.org/',
       },
       {
         icon: '/logo.png',
